@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: mercX
+  security:
+    oauth2:
+      client:
+        registration:
+          mercx-realm:
+            client-id: merx-client-id
+            client-secret: 4Ds1AoakhZgfLFLuDND9rnza7dJSDYk6
+            provider: mercx-realm
+            scope: openid
+            authorization-grant-type: authorization_code
+        provider:
+          mercx-realm:
+            issuer-uri: http://host.docker.internal:8085/realms/mercx-realm  # для Spring Boot
+            authorization-uri: http://localhost:8085/realms/mercx-realm/protocol/openid-connect/auth
+
+server:
+  port: 8081
