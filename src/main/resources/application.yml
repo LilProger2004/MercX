@@ -3,18 +3,27 @@ spring:
     name: mercX
   security:
     oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8085/realms/mercx-realm
       client:
         registration:
           mercx-realm:
             client-id: merx-client-id
-            client-secret: 4Ds1AoakhZgfLFLuDND9rnza7dJSDYk6
+            client-secret: uiFjhMLvYD9VhAVZSr7WFVHt30GAWwCm
             provider: mercx-realm
             scope: openid
             authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
         provider:
           mercx-realm:
-            issuer-uri: http://host.docker.internal:8085/realms/mercx-realm  # для Spring Boot
+            #issuer-uri: http://172.19.0.2:8080/realms/mercx-realm  # для Spring Boot
             authorization-uri: http://localhost:8085/realms/mercx-realm/protocol/openid-connect/auth
-
+            token-uri: http://keycloak:8085/realms/mercx-realm/protocol/openid-connect/token
+            jwk-set-uri:  http://keycloak:8085/realms/mercx-realm/protocol/openid-connect/certs
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
 server:
   port: 8081
