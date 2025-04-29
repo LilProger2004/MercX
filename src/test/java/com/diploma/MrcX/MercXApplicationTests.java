@@ -1,4 +1,4 @@
-package com.diploma.M.rcX;
+package com.diploma.MrcX;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

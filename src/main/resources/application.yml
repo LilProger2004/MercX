@@ -1,18 +1,31 @@
 spring:
   application:
     name: mercX
+  jpa:
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+  datasource:
+      username: postgres
+      password: root
+      url: jdbc:postgresql://db:5432/mercX
+      driverClassName: org.postgresql.Driver
+
   security:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8085/realms/mercx-realm
+          issuer-uri: http://keycloak:8085/realms/mercx-realm
       client:
         registration:
           mercx-realm:
-            client-id: merx-client-id
+            client-id: mercx-client-id
             client-secret: uiFjhMLvYD9VhAVZSr7WFVHt30GAWwCm
             provider: mercx-realm
-            scope: openid
+            scope:
+              - openid
+              - profile
+              - email
             authorization-grant-type: authorization_code
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
         provider:
@@ -25,5 +38,10 @@ logging:
   level:
     org.springframework.security: DEBUG
     org.springframework.web: DEBUG
+keycloak:
+   server-url: http://keycloak:8085
+   realm: mercx-realm
+   client-id: mercx-client-id
+   client-secret: uiFjhMLvYD9VhAVZSr7WFVHt30GAWwCm
 server:
   port: 8081
