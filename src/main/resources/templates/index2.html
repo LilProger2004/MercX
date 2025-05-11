@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фриланс Биржа | Наймите профессионалов или найдите работу</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/header-footer.css">
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <nav class="navbar">
+            <a href="index.html" class="logo">Фриланс<span>Биржа</span></a>
+            <ul class="nav-links">
+                <li><a href="/user/test">Фрилансеры</a></li>
+                <li><a href="/project/">Проекты</a></li>
+                <li><a href="projects.html">Заказчики</a></li>
+                <li><a href="blog.html">Новости</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <div th:if="${auth}">
+                    <a href="/me"><img src="/img/avatar.png" alt="Фото профиля" class="avatar"></a>
+                </div>
+                <div th:unless="${auth}">
+                    <a href="/" class="btn btn-outline">Войти</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <h1>Найдите идеального фрилансера для вашего бизнеса</h1>
+        <p>Соединяем талантливых фрилансеров с клиентами по всему миру. Более 50 категорий услуг.</p>
+        <div class="search-bar">
+            <input type="text" placeholder="Например: веб-дизайн, копирайтинг, программирование...">
+            <button>Найти</button>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Популярные категории</h2>
+            <p>Выберите категорию, которая соответствует вашим потребностям</p>
+        </div>
+        <div class="categories">
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Веб-разработка</h3>
+                <p>Создание сайтов и веб-приложений</p>
+                <a href="#" class="btn btn-outline">Просмотреть</a>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3>Дизайн</h3>
+                <p>Графический и UI/UX дизайн</p>
+                <a href="#" class="btn btn-outline">Просмотреть</a>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-pen-fancy"></i>
+                </div>
+                <h3>Копирайтинг</h3>
+                <p>Написание текстов и контента</p>
+                <a href="#" class="btn btn-outline">Просмотреть</a>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Маркетинг</h3>
+                <p>Продвижение и реклама</p>
+                <a href="#" class="btn btn-outline">Просмотреть</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Freelancers Section -->
+<section class="section freelancers">
+    <div class="container">
+        <div class="section-title">
+            <h2>Топ фрилансеры</h2>
+            <p>Лучшие исполнители с высоким рейтингом</p>
+        </div>
+        <div class="freelancer-grid">
+            <div class="freelancer-card">
+                <div class="freelancer-image"
+                     style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
+                <div class="freelancer-info">
+                    <h3>Алексей Петров</h3>
+                    <p>Веб-разработчик</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>4.7 (128 отзывов)</span>
+                    </div>
+                    <div class="skills">
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React</span>
+                    </div>
+                    <a href="freelancer-profile.html" class="btn btn-primary">Посмотреть профиль</a>
+                </div>
+            </div>
+            <div class="freelancer-card">
+                <div class="freelancer-image"
+                     style="background-image: url('https://randomuser.me/api/portraits/women/44.jpg');"></div>
+                <div class="freelancer-info">
+                    <h3>Елена Смирнова</h3>
+                    <p>UI/UX Дизайнер</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>5.0 (96 отзывов)</span>
+                    </div>
+                    <div class="skills">
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Adobe XD</span>
+                        <span class="skill-tag">Photoshop</span>
+                    </div>
+                    <a href="freelancer-profile.html" class="btn btn-primary">Посмотреть профиль</a>
+                </div>
+            </div>
+            <div class="freelancer-card">
+                <div class="freelancer-image"
+                     style="background-image: url('https://randomuser.me/api/portraits/men/75.jpg');"></div>
+                <div class="freelancer-info">
+                    <h3>Иван Козлов</h3>
+                    <p>Копирайтер</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>4.2 (215 отзывов)</span>
+                    </div>
+                    <div class="skills">
+                        <span class="skill-tag">SEO</span>
+                        <span class="skill-tag">Контент-маркетинг</span>
+                        <span class="skill-tag">Лендинги</span>
+                    </div>
+                    <a href="freelancer-profile.html" class="btn btn-primary">Посмотреть профиль</a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="freelancers.html" class="btn btn-primary">Смотреть всех фрилансеров</a>
+        </div>
+    </div>
+</section>
+
+<!-- How it works -->
+<section class="section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Как это работает</h2>
+            <p>Три простых шага к успешному сотрудничеству</p>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Создайте проект</h3>
+                <p>Опишите вашу задачу, установите бюджет и сроки выполнения</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Выберите исполнителя</h3>
+                <p>Просмотрите предложения фрилансеров и выберите лучшего</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Получите результат</h3>
+                <p>Примите работу и оплатите ее только когда будете довольны</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>ФрилансБиржа</h3>
+                <p>Лучшая платформа для поиска фрилансеров и удаленной работы. Соединяем профессионалов и клиентов с
+                    2023 года.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Для фрилансеров</h3>
+                <ul>
+                    <li><a href="#">Как начать работать</a></li>
+                    <li><a href="#">Создать профиль</a></li>
+                    <li><a href="#">Найти проекты</a></li>
+                    <li><a href="#">Тарифы</a></li>
+                    <li><a href="#">Портфолио</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Для клиентов</h3>
+                <ul>
+                    <li><a href="#">Разместить проект</a></li>
+                    <li><a href="#">Найти фрилансера</a></li>
+                    <li><a href="#">Как оплачивать</a></li>
+                    <li><a href="#">Безопасность</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Компания</h3>
+                <ul>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Карьера</a></li>
+                    <li><a href="#">Блог</a></li>
+                    <li><a href="#">Контакты</a></li>
+                    <li><a href="#">Политика конфиденциальности</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 ФрилансБиржа. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

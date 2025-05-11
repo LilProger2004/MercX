@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фрилансеры | Биржа фрилансеров</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Подключение CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/header-footer.css">
+    <link rel="stylesheet" href="/css/freelancers.css">
+</head>
+<body>
+    <!-- Header (как в index.html) -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Фриланс<span>Биржа</span></a>
+                <ul class="nav-links">
+                    <li><a href="/user/test">Фрилансеры</a></li>
+                    <li><a href="/project/">Проекты</a></li>
+                    <li><a href="projects.html">Заказчики</a></li>
+                    <li><a href="blog.html">Новости</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <div th:if="${auth}">
+                        <a href="/me"><img src="/img/avatar.png" alt="Фото профиля" class="avatar"></a>
+                    </div>
+                    <div th:unless="${auth}">
+                        <a href="/" class="btn btn-outline">Войти</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <section class="section">
+        <div class="container">
+            <h1>Найдите подходящего фрилансера</h1>
+            <p>Более 10,000 профессионалов в различных категориях</p>
+            
+            <!-- Filters -->
+            <div class="filters">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="category">Категория</label>
+                        <select id="category">
+                            <option value="">Все категории</option>
+                            <option value="web">Веб-разработка</option>
+                            <option value="design">Дизайн</option>
+                            <option value="writing">Копирайтинг</option>
+                            <option value="marketing">Маркетинг</option>
+                            <option value="mobile">Мобильная разработка</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="skills">Навыки</label>
+                        <input type="text" id="skills" placeholder="Например: JavaScript, Photoshop">
+                    </div>
+                </div>
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="rate">Ставка в час</label>
+                        <select id="rate">
+                            <option value="">Любая ставка</option>
+                            <option value="0-500">До 500 руб.</option>
+                            <option value="500-1000">500 - 1000 руб.</option>
+                            <option value="1000-2000">1000 - 2000 руб.</option>
+                            <option value="2000+">Более 2000 руб.</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="location">Страна</label>
+                        <select id="location">
+                            <option value="">Любая страна</option>
+                            <option value="ru">Россия</option>
+                            <option value="ua">Украина</option>
+                            <option value="by">Беларусь</option>
+                            <option value="kz">Казахстан</option>
+                            <option value="other">Другие</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="apply-filters">
+                    <button class="btn btn-primary">Применить фильтры</button>
+                </div>
+            </div>
+            
+            <!-- Sort Options -->
+            <div class="sort-options">
+                <div class="total-freelancers">
+                    Найдено: <strong>1,243 фрилансера</strong>
+                </div>
+                <div class="sort-by">
+                    <span>Сортировать по:</span>
+                    <select>
+                        <option value="rating">Рейтингу</option>
+                        <option value="newest">Новизне</option>
+                        <option value="price-low">Цене (по возрастанию)</option>
+                        <option value="price-high">Цене (по убыванию)</option>
+                    </select>
+                </div>
+                <div class="view-options">
+                    <button class="active"><i class="fas fa-th-large"></i></button>
+                    <button><i class="fas fa-list"></i></button>
+                </div>
+            </div>
+            
+            <!-- Freelancers Grid -->
+            <div class="freelancer-grid">
+                <!-- Фрилансер 1 -->
+                <div class="freelancer-card">
+                    <div class="freelancer-image" style="background-image: url('https://randomuser.me/api/portraits/men/22.jpg');"></div>
+                    <div class="freelancer-info">
+                        <h3>Дмитрий Иванов</h3>
+                        <p>Full-stack разработчик</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>4.2 (87 отзывов)</span>
+                        </div>
+                        <div class="skills">
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">MongoDB</span>
+                        </div>
+                        <div class="rate">От 1500 руб./час</div>
+                        <a href="freelancer-profile.html" class="btn btn-primary">Посмотреть профиль</a>
+                    </div>
+                </div>
+                
+                <!-- Фрилансер 2 -->
+                <div class="freelancer-card">
+                    <div class="freelancer-image" style="background-image: url('https://randomuser.me/api/portraits/women/33.jpg');"></div>
+                    <div class="freelancer-info">
+                        <h3>Анна Кузнецова</h3>
+                        <p>UI/UX Дизайнер</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.8 (124 отзыва)</span>
+                        </div>
+                        <div class="skills">
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">Adobe XD</span>
+                            <span class="skill-tag">Photoshop</span>
+                        </div>
+                        <div class="rate">От 1200 руб./час</div>
+                        <a href="freelancer-profile.html" class="btn btn-primary">Посмотреть профиль</a>
+                    </div>
+                </div>
+                
+                <!-- Фрилансер 3 -->
+                <div class="freelancer-card">
+                    <div class="freelancer-image" style="background-image: url('https://randomuser.me/api/portraits/men/45.jpg');"></div>
+                    <div class="freelancer-info">
+                        <h3>Сергей Васильев</h3>
+                        <p>Копирайтер</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>5.0 (56 отзывов)</span>
+                        </div>
+                        <div class="skills">
+                            <span class="skill-tag">SEO</span>
+                            <span class="skill-tag">Контент-маркетинг</span>
+                            <span class="skill-tag">Лендинги</span>
+                        </div>
+                        <div class="rate">От 800 руб./час</div>
+                        <a href="freelancer-profile.html" class="btn btn-primary">Посмотреть профиль</a>
+                    </div>
+                </div>
+                
+                <!-- Фрилансер 4 -->
+                <div class="freelancer-card">
+                    <div class="freelancer-image" style="background-image: url('https://randomuser.me/api/portraits/women/28.jpg');"></div>
+                    <div class="freelancer-info">
+                        <h3>Ольга Петрова</h3>
+                        <p>Маркетолог</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>4.1 (92 отзыва)</span>
+                        </div>
+                        <div class="skills">
+                            <span class="skill-tag">SMM</span>
+                            <span class="skill-tag">Таргет</span>
+                            <span class="skill-tag">Контекст</span>
+                        </div>
+                        <div class="rate">От 1000 руб./час</div>
+                        <a href="freelancer-profile.html" class="btn btn-primary">Посмотреть профиль</a>
+                    </div>
+                </div>
+                
+                <!-- Фрилансер 5 -->
+                <div class="freelancer-card">
+                    <div class="freelancer-image" style="background-image: url('https://randomuser.me/api/portraits/men/67.jpg');"></div>
+                    <div class="freelancer-info">
+                        <h3>Александр Соколов</h3>
+                        <p>Мобильный разработчик</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.6 (78 отзывов)</span>
+                        </div>
+                        <div class="skills">
+                            <span class="skill-tag">Flutter</span>
+                            <span class="skill-tag">Dart</span>
+                            <span class="skill-tag">Firebase</span>
+                        </div>
+                        <div class="rate">От 1800 руб./час</div>
+                        <a href="freelancer-profile.html" class="btn btn-primary">Посмотреть профиль</a>
+                    </div>
+                </div>
+                
+                <!-- Фрилансер 6 -->
+                <div class="freelancer-card">
+                    <div class="freelancer-image" style="background-image: url('https://randomuser.me/api/portraits/women/51.jpg');"></div>
+                    <div class="freelancer-info">
+                        <h3>Екатерина Михайлова</h3>
+                        <p>Графический дизайнер</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>4.0 (65 отзывов)</span>
+                        </div>
+                        <div class="skills">
+                            <span class="skill-tag">Illustrator</span>
+                            <span class="skill-tag">Photoshop</span>
+                            <span class="skill-tag">InDesign</span>
+                        </div>
+                        <div class="rate">От 900 руб./час</div>
+                        <a href="freelancer-profile.html" class="btn btn-primary">Посмотреть профиль</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">&raquo;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (как в index.html) -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ФрилансБиржа</h3>
+                    <p>Лучшая платформа для поиска фрилансеров и удаленной работы. Соединяем профессионалов и клиентов с 2023 года.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Для фрилансеров</h3>
+                    <ul>
+                        <li><a href="#">Как начать работать</a></li>
+                        <li><a href="#">Создать профиль</a></li>
+                        <li><a href="#">Найти проекты</a></li>
+                        <li><a href="#">Тарифы</a></li>
+                        <li><a href="#">Портфолио</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Для клиентов</h3>
+                    <ul>
+                        <li><a href="#">Разместить проект</a></li>
+                        <li><a href="#">Найти фрилансера</a></li>
+                        <li><a href="#">Как оплачивать</a></li>
+                        <li><a href="#">Безопасность</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Компания</h3>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Карьера</a></li>
+                        <li><a href="#">Блог</a></li>
+                        <li><a href="#">Контакты</a></li>
+                        <li><a href="#">Политика конфиденциальности</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 ФрилансБиржа. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

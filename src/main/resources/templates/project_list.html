@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проекты | Биржа фрилансеров</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Подключение CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/header-footer.css">
+    <link rel="stylesheet" href="/css/projects.css">
+</head>
+<body>
+    <!-- Header (как в index.html) -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Фриланс<span>Биржа</span></a>
+                <ul class="nav-links">
+                    <li><a href="/user/test">Фрилансеры</a></li>
+                    <li><a href="/project/">Проекты</a></li>
+                    <li><a href="projects.html">Заказчики</a></li>
+                    <li><a href="blog.html">Новости</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <div th:if="${auth}">
+                        <a href="/me"><img src="/img/avatar.png" alt="Фото профиля" class="avatar"></a>
+                    </div>
+                    <div th:unless="${auth}">
+                        <a href="/" class="btn btn-outline">Войти</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <section class="section">
+        <div class="container">
+            <h1>Найдите подходящий проект</h1>
+            <p>Тысячи проектов ждут своего исполнителя</p>
+            
+            <!-- Post Project Button -->
+            <div class="post-project">
+                <a href="post-project.html" class="btn btn-primary">Разместить проект</a>
+            </div>
+            
+            <!-- Filters (как в freelancers.html) -->
+            <div class="filters">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="category">Категория</label>
+                        <select id="category">
+                            <option value="">Все категории</option>
+                            <option value="web">Веб-разработка</option>
+                            <option value="design">Дизайн</option>
+                            <option value="writing">Копирайтинг</option>
+                            <option value="marketing">Маркетинг</option>
+                            <option value="mobile">Мобильная разработка</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="skills">Навыки</label>
+                        <input type="text" id="skills" placeholder="Например: JavaScript, Photoshop">
+                    </div>
+                </div>
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="budget">Бюджет</label>
+                        <select id="budget">
+                            <option value="">Любой бюджет</option>
+                            <option value="0-10000">До 10 000 руб.</option>
+                            <option value="10000-30000">10 000 - 30 000 руб.</option>
+                            <option value="30000-50000">30 000 - 50 000 руб.</option>
+                            <option value="50000+">Более 50 000 руб.</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="duration">Срок</label>
+                        <select id="duration">
+                            <option value="">Любой срок</option>
+                            <option value="1week">До 1 недели</option>
+                            <option value="1month">До 1 месяца</option>
+                            <option value="3months">До 3 месяцев</option>
+                            <option value="long">Долгосрочный</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="apply-filters">
+                    <button class="btn btn-primary">Применить фильтры</button>
+                </div>
+            </div>
+            
+            <!-- Sort Options (как в freelancers.html) -->
+            <div class="sort-options">
+                <div class="total-freelancers">
+                    Найдено: <strong>328 проектов</strong>
+                </div>
+                <div class="sort-by">
+                    <span>Сортировать по:</span>
+                    <select>
+                        <option value="newest">Новизне</option>
+                        <option value="budget-high">Бюджету (по убыванию)</option>
+                        <option value="budget-low">Бюджету (по возрастанию)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Projects List -->
+            <div class="projects-list">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <a href="project-details.html" class="project-title">Разработка интернет-магазина</a>
+                        <div class="project-budget">50 000 - 80 000 руб.</div>
+                    </div>
+                    <div class="project-description">
+                        Нужно разработать интернет-магазин с каталогом товаров, корзиной и системой оплаты. Требуется интеграция с 1С. Дизайн уже готов, нужна только верстка и программирование. Предпочтение отдается фрилансерам с опытом работы с OpenCart.
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> Опубликован 2 дня назад</span>
+                            <span class="meta-item"><i class="far fa-comments"></i> 12 предложений</span>
+                            <span class="project-status status-open">Открыт</span>
+                        </div>
+                        <div class="project-skills">
+                            <span class="project-skill">OpenCart</span>
+                            <span class="project-skill">PHP</span>
+                            <span class="project-skill">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <a href="project-details.html" class="project-title">Дизайн логотипа и фирменного стиля</a>
+                        <div class="project-budget">15 000 - 20 000 руб.</div>
+                    </div>
+                    <div class="project-description">
+                        Ищем дизайнера для создания логотипа и фирменного стиля для нового бренда одежды. Название бренда: "UrbanStyle". Стиль: минимализм, скандинавский дизайн. Целевая аудитория: молодые люди 18-35 лет. Нужно предоставить несколько вариантов на выбор.
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> Опубликован 5 дней назад</span>
+                            <span class="meta-item"><i class="far fa-comments"></i> 8 предложений</span>
+                            <span class="project-status status-open">Открыт</span>
+                        </div>
+                        <div class="project-skills">
+                            <span class="project-skill">Логотип</span>
+                            <span class="project-skill">Фирменный стиль</span>
+                            <span class="project-skill">Adobe Illustrator</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <a href="project-details.html" class="project-title">Написание статей для блога</a>
+                        <div class="project-budget">500 руб./статья</div>
+                    </div>
+                    <div class="project-description">
+                        Требуется копирайтер для написания статей на тему цифрового маркетинга. Объем: 3000-5000 знаков. Темы предоставляем. Частота: 2 статьи в неделю. Долгосрочное сотрудничество. Требуется пример предыдущих работ.
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> Опубликован 1 неделю назад</span>
+                            <span class="meta-item"><i class="far fa-comments"></i> 23 предложения</span>
+                            <span class="project-status status-open">Открыт</span>
+                        </div>
+                        <div class="project-skills">
+                            <span class="project-skill">Копирайтинг</span>
+                            <span class="project-skill">SEO</span>
+                            <span class="project-skill">Маркетинг</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <a href="project-details.html" class="project-title">Разработка мобильного приложения</a>
+                        <div class="project-budget">120 000 - 150 000 руб.</div>
+                    </div>
+                    <div class="project-description">
+                        Нужно разработать мобильное приложение для iOS и Android (нативное или кроссплатформенное решение). Приложение для фитнес-трекера с синхронизацией с Apple Health и Google Fit. Требуется опыт работы с подобными проектами.
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> Опубликован 3 дня назад</span>
+                            <span class="meta-item"><i class="far fa-comments"></i> 5 предложений</span>
+                            <span class="project-status status-open">Открыт</span>
+                        </div>
+                        <div class="project-skills">
+                            <span class="project-skill">iOS</span>
+                            <span class="project-skill">Android</span>
+                            <span class="project-skill">Flutter</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <a href="project-details.html" class="project-title">SEO продвижение сайта</a>
+                        <div class="project-budget">25 000 руб./месяц</div>
+                    </div>
+                    <div class="project-description">
+                        Ищем SEO-специалиста для продвижения сайта строительной компании. Регион: Москва и МО. Текущие позиции низкие, требуется комплексная работа. Необходимо предоставить план работ и отчетность. Опыт работы с тематикой строительства приветствуется.
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-meta">
+                            <span class="meta-item"><i class="far fa-clock"></i> Опубликован 1 день назад</span>
+                            <span class="meta-item"><i class="far fa-comments"></i> 7 предложений</span>
+                            <span class="project-status status-open">Открыт</span>
+                        </div>
+                        <div class="project-skills">
+                            <span class="project-skill">SEO</span>
+                            <span class="project-skill">Контекстная реклама</span>
+                            <span class="project-skill">Аналитика</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination (как в freelancers.html) -->
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">&raquo;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (как в index.html) -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ФрилансБиржа</h3>
+                    <p>Лучшая платформа для поиска фрилансеров и удаленной работы. Соединяем профессионалов и клиентов с 2023 года.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Для фрилансеров</h3>
+                    <ul>
+                        <li><a href="#">Как начать работать</a></li>
+                        <li><a href="#">Создать профиль</a></li>
+                        <li><a href="#">Найти проекты</a></li>
+                        <li><a href="#">Тарифы</a></li>
+                        <li><a href="#">Портфолио</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Для клиентов</h3>
+                    <ul>
+                        <li><a href="#">Разместить проект</a></li>
+                        <li><a href="#">Найти фрилансера</a></li>
+                        <li><a href="#">Как оплачивать</a></li>
+                        <li><a href="#">Безопасность</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Компания</h3>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Карьера</a></li>
+                        <li><a href="#">Блог</a></li>
+                        <li><a href="#">Контакты</a></li>
+                        <li><a href="#">Политика конфиденциальности</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 ФрилансБиржа. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

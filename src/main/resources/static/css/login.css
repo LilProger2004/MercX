@@ -1,0 +1,97 @@
+.role-selection {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 40px 20px;
+}
+
+.role-container {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 50px;
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+}
+
+.role-title {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: var(--dark);
+}
+
+.role-subtitle {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.role-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.role-btn {
+    flex: 1;
+    min-width: 250px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--dark);
+}
+
+.role-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary);
+}
+
+.role-btn i {
+    font-size: 50px;
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+.role-btn h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.role-btn p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.role-note {
+    margin-top: 40px;
+    font-size: 14px;
+    color: #888;
+}
+
+@media (max-width: 768px) {
+    .role-container {
+        padding: 30px 20px;
+    }
+
+    .role-buttons {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .role-btn {
+        min-width: 100%;
+    }
+}

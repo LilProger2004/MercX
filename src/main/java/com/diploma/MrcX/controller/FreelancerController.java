@@ -5,33 +5,26 @@ import com.diploma.MrcX.security.JwtUtils;
 import com.diploma.MrcX.service.KeycloakAdminService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 
 @Controller
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/freelancer")
+public class FreelancerController {
 
     private final JwtUtils jwtUtils = new JwtUtils();
 
-    public UserController(KeycloakAdminService keycloakAdminService) {
+    public FreelancerController(KeycloakAdminService keycloakAdminService) {
         this.keycloakAdminService = keycloakAdminService;
     }
 
     private final KeycloakAdminService keycloakAdminService;
 
-    @GetMapping("me")
+    /*@GetMapping("me")
     public Map<String, Object> userInfo(Authentication authentication) {
         Map<String, Object> attributes = new HashMap<>();
 
@@ -53,17 +46,17 @@ public class UserController {
         }
 
         return attributes;
-    }
+    }*/
 
     @GetMapping("test")
-    public ResponseEntity<List<Map<String, Object>>> getUsers() {
-        return ResponseEntity.ok(keycloakAdminService.getAllUsers());
+    public String getUsers() {
+        return "freelancers";
     }
 
-    @GetMapping("testById")
+    @GetMapping("me")
     public String getById(Authentication authentication, Model model) throws JsonProcessingException {
         User user = new ObjectMapper().readValue(keycloakAdminService.getUserById(jwtUtils.getUserIdFromJWT(authentication)),User.class);
         model.addAttribute("id",user.getId());
-        return "client";
+        return "freelancer_profile";
     }
 }

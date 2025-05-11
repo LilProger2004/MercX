@@ -1,0 +1,247 @@
+/* forms.css - стили для форм */
+.auth-container {
+    display: flex;
+    min-height: 80vh;
+}
+
+.auth-left {
+    flex: 1;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.auth-right {
+    flex: 1;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.auth-form {
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.auth-form h2 {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.budget-types {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.budget-type {
+    flex: 1;
+    text-align: center;
+}
+
+.budget-type input {
+    display: none;
+}
+
+.budget-type label {
+    display: block;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.budget-type input:checked + label {
+    border-color: var(--primary);
+    background-color: rgba(67, 97, 238, 0.1);
+}
+
+.skills-selector {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.selected-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.selected-skill {
+    background-color: var(--primary);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.selected-skill button {
+    background: none;
+    border: none;
+    color: white;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-option {
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.skill-option:hover {
+    background-color: #e0e0e0;
+}
+
+.form-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.form-note {
+    font-size: 14px;
+    color: #777;
+    margin-top: 10px;
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.auth-features {
+    margin-top: 40px;
+}
+
+.auth-feature {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.auth-feature-icon {
+    font-size: 24px;
+    margin-right: 15px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.auth-feature-text h3 {
+    margin-bottom: 5px;
+}
+
+.auth-feature-text p {
+    opacity: 0.9;
+}
+
+.social-auth {
+    margin-top: 30px;
+}
+
+.social-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.social-btn i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.btn-google {
+    background-color: #DB4437;
+}
+
+.btn-facebook {
+    background-color: #4267B2;
+}
+
+.btn-vk {
+    background-color: #4C75A3;
+}
+
+.post-project-form {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .auth-container {
+        flex-direction: column;
+    }
+
+    .auth-left {
+        padding: 40px 20px;
+    }
+
+    .auth-right {
+        padding: 40px 20px;
+    }
+}
