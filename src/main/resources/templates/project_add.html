@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Разместить проект | Биржа фрилансеров</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Подключение CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/header-footer.css">
+    <link rel="stylesheet" href="/css/forms.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <nav class="navbar">
+            <a href="index.html" class="logo">Фриланс<span>Биржа</span></a>
+            <ul class="nav-links">
+                <li><a href="/freelancer/all">Фрилансеры</a></li>
+                <li><a href="/project/all">Проекты</a></li>
+                <li><a href="/news">Новости</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <div th:if="${auth}">
+                    <a href="/me"><img src="/img/avatar.png" alt="Фото профиля" class="avatar"></a>
+                </div>
+                <div th:unless="${auth}">
+                    <a href="/" class="btn btn-outline">Войти</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+    <!-- Main Content -->
+    <section class="section">
+        <div class="container">
+            <h1 style="text-align: center;">Разместить новый проект</h1>
+            <p style="text-align: center; margin-bottom: 40px;">Заполните форму ниже, чтобы найти подходящего исполнителя</p>
+            
+            <div class="post-project-form">
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="project-title">Название проекта *</label>
+                        <input type="text" id="project-title" placeholder="Кратко опишите, что нужно сделать" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="project-category">Категория *</label>
+                        <select id="project-category" required>
+                            <option value="">Выберите категорию</option>
+                            <option value="web">Веб-разработка</option>
+                            <option value="design">Дизайн</option>
+                            <option value="writing">Копирайтинг</option>
+                            <option value="marketing">Маркетинг</option>
+                            <option value="mobile">Мобильная разработка</option>
+                            <option value="video">Видео и анимация</option>
+                            <option value="audio">Музыка и аудио</option>
+                            <option value="business">Бизнес</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="project-description">Описание проекта *</label>
+                        <textarea id="project-description" placeholder="Подробно опишите задачу, требования, сроки и другие важные детали" required></textarea>
+                        <div class="form-note">Чем подробнее описание, тем больше подходящих предложений вы получите</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Тип бюджета *</label>
+                        <div class="budget-types">
+                            <div class="budget-type">
+                                <input type="radio" id="fixed-budget" name="budget-type" value="fixed" checked>
+                                <label for="fixed-budget">Фиксированная цена</label>
+                            </div>
+                            <div class="budget-type">
+                                <input type="radio" id="hourly-budget" name="budget-type" value="hourly">
+                                <label for="hourly-budget">Почасовая оплата</label>
+                            </div>
+                            <div class="budget-type">
+                                <input type="radio" id="negotiable-budget" name="budget-type" value="negotiable">
+                                <label for="negotiable-budget">Договорная</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="budget-amount">Бюджет *</label>
+                            <input type="text" id="budget-amount" placeholder="Например: 10 000 - 15 000 руб." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="project-duration">Срок выполнения</label>
+                            <select id="project-duration">
+                                <option value="">Не указан</option>
+                                <option value="1week">До 1 недели</option>
+                                <option value="1month">До 1 месяца</option>
+                                <option value="3months">До 3 месяцев</option>
+                                <option value="long">Долгосрочный проект</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="project-skills">Требуемые навыки</label>
+                        <div class="skills-selector">
+                            <div class="selected-skills">
+                                <!-- Здесь будут выбранные навыки -->
+                            </div>
+                            <input type="text" id="skill-input" placeholder="Начните вводить навык">
+                            <div class="skills-list">
+                                <div class="skill-option">HTML</div>
+                                <div class="skill-option">CSS</div>
+                                <div class="skill-option">JavaScript</div>
+                                <div class="skill-option">React</div>
+                                <div class="skill-option">Node.js</div>
+                                <div class="skill-option">PHP</div>
+                                <div class="skill-option">Python</div>
+                                <div class="skill-option">UI/UX</div>
+                                <div class="skill-option">Figma</div>
+                                <div class="skill-option">Photoshop</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="project-files">Прикрепить файлы</label>
+                        <input type="file" id="project-files" multiple>
+                        <div class="form-note">Максимальный размер файла: 10MB. Допустимые форматы: PDF, DOC, JPG, PNG, ZIP</div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" style="padding: 12px 30px;">Разместить проект</button>
+                        <div class="form-note">После размещения проекта вы сможете просматривать предложения фрилансеров и выбирать подходящего исполнителя</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (как в index.html) -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ФрилансБиржа</h3>
+                    <p>Лучшая платформа для поиска фрилансеров и удаленной работы. Соединяем профессионалов и клиентов с 2023 года.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Для фрилансеров</h3>
+                    <ul>
+                        <li><a href="#">Как начать работать</a></li>
+                        <li><a href="#">Создать профиль</a></li>
+                        <li><a href="#">Найти проекты</a></li>
+                        <li><a href="#">Тарифы</a></li>
+                        <li><a href="#">Портфолио</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Для клиентов</h3>
+                    <ul>
+                        <li><a href="#">Разместить проект</a></li>
+                        <li><a href="#">Найти фрилансера</a></li>
+                        <li><a href="#">Как оплачивать</a></li>
+                        <li><a href="#">Безопасность</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Компания</h3>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Карьера</a></li>
+                        <li><a href="#">Блог</a></li>
+                        <li><a href="#">Контакты</a></li>
+                        <li><a href="#">Политика конфиденциальности</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 ФрилансБиржа. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Обработка выбора навыков
+        const skillOptions = document.querySelectorAll('.skill-option');
+        const selectedSkillsContainer = document.querySelector('.selected-skills');
+        
+        skillOptions.forEach(skill => {
+            skill.addEventListener('click', () => {
+                const skillName = skill.textContent;
+                
+                // Проверяем, не добавлен ли уже этот навык
+                const alreadyAdded = Array.from(selectedSkillsContainer.children).some(
+                    item => item.textContent.includes(skillName)
+                );
+                
+                if (!alreadyAdded) {
+                    const selectedSkill = document.createElement('div');
+                    selectedSkill.className = 'selected-skill';
+                    selectedSkill.innerHTML = `
+                        ${skillName}
+                        <button type="button">&times;</button>
+                    `;
+                    
+                    selectedSkillsContainer.appendChild(selectedSkill);
+                    
+                    // Добавляем обработчик удаления навыка
+                    selectedSkill.querySelector('button').addEventListener('click', () => {
+                        selectedSkill.remove();
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

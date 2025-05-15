@@ -5,6 +5,8 @@ spring:
     properties:
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
+    hibernate:
+      ddl-auto: update
   datasource:
 #      username: postgres
 #      password: root
@@ -20,7 +22,7 @@ spring:
         registration:
           Freelance-Exchange:
             client-id: MercX
-            client-secret: IZ0GK2jljulVPoYuGYwZsFCXLRE5CHLQ
+            client-secret: SYtPBftMe9d8jM8VsBayG0CGOOHA4P8g
             provider: Freelance-Exchange
             scope:
               - openid
@@ -44,7 +46,7 @@ keycloak:
    server-url: http://keycloak:8085
    realm: Freelance-Exchange
    client-id: MercX
-   client-secret: IZ0GK2jljulVPoYuGYwZsFCXLRE5CHLQ
+   client-secret: SYtPBftMe9d8jM8VsBayG0CGOOHA4P8g
 
 server:
   port: 8081

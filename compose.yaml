@@ -10,8 +10,8 @@ services:
       - app
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/mercX
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
     depends_on:
       - db
 

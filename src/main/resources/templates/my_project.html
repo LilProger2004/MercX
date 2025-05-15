@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои проекты | Фриланс Биржа</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/header-footer.css">
+    <link rel="stylesheet" href="/css/my-projects.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Фриланс<span>Биржа</span></a>
+                <ul class="nav-links">
+                    <li><a href="/freelancer/all">Фрилансеры</a></li>
+                    <li><a href="/project/all">Проекты</a></li>
+                    <li><a href="/news">Новости</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <div th:if="${auth}">
+                        <a href="/me"><img src="/img/avatar.png" alt="Фото профиля" class="avatar"></a>
+                    </div>
+                    <div th:unless="${auth}">
+                        <a href="/" class="btn btn-outline">Войти</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <div class="page-header">
+            <h1>Мои проекты</h1>
+            <a href="post-project.html" class="btn btn-primary">Создать проект</a>
+        </div>
+
+        <div class="projects-tabs">
+            <div class="tab active" data-tab="active">Активные (3)</div>
+            <div class="tab" data-tab="completed">Завершенные (5)</div>
+            <div class="tab" data-tab="drafts">Черновики (1)</div>
+        </div>
+
+        <div class="projects-list">
+            <!-- Проект 1 -->
+            <div class="project-card active">
+                <div class="project-info">
+                    <h2>Разработка корпоративного сайта</h2>
+                    <div class="project-meta">
+                        <span class="budget">Бюджет: 75 000 руб.</span>
+                        <span class="deadline">Срок: до 15 июня</span>
+                        <span class="status status-active">В работе</span>
+                    </div>
+                    <div class="project-description">
+                        <p>Необходимо разработать современный корпоративный сайт для IT-компании. Уже есть дизайн в Figma.</p>
+                    </div>
+                </div>
+                <div class="project-actions">
+                    <div class="freelancer-assigned">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Елена Смирнова" class="freelancer-avatar">
+                        <div>
+                            <h4>Елена Смирнова</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 5.0 (96 отзывов)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <a href="project-detail.html" class="btn btn-outline">Подробнее</a>
+                        <a href="#" class="btn btn-primary">Добавить исполнителя</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Проект 2 -->
+            <div class="project-card active">
+                <div class="project-info">
+                    <h2>Редизайн мобильного приложения</h2>
+                    <div class="project-meta">
+                        <span class="budget">Бюджет: 50 000 руб.</span>
+                        <span class="deadline">Срок: до 30 мая</span>
+                        <span class="status status-pending">Идет выбор</span>
+                    </div>
+                    <div class="project-description">
+                        <p>Требуется обновить UI/UX существующего приложения для iOS и Android. Нужен современный дизайн.</p>
+                    </div>
+                </div>
+                <div class="project-actions">
+                    <div class="freelancer-assigned">
+                        <span>Исполнитель не выбран</span>
+                    </div>
+                    <div class="action-buttons">
+                        <a href="project-detail.html" class="btn btn-outline">Подробнее</a>
+                        <a href="#" class="btn btn-primary">Добавить исполнителя</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2023 ФрилансБиржа. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно добавления исполнителя -->
+    <div class="modal-overlay" id="assignModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Добавить исполнителя</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="search-freelancer">
+                    <input type="text" placeholder="Найти фрилансера...">
+                    <button class="btn btn-primary">Поиск</button>
+                </div>
+                <div class="freelancers-list">
+                    <div class="freelancer-item">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Дмитрий Иванов" class="freelancer-avatar">
+                        <div class="freelancer-details">
+                            <h4>Дмитрий Иванов</h4>
+                            <p>Full-stack разработчик</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.7 (128 отзывов)
+                            </div>
+                        </div>
+                        <button class="btn btn-outline">Выбрать</button>
+                    </div>
+                    <div class="freelancer-item">
+                        <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Анна Кузнецова" class="freelancer-avatar">
+                        <div class="freelancer-details">
+                            <h4>Анна Кузнецова</h4>
+                            <p>UI/UX Дизайнер</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.8 (124 отзыва)
+                            </div>
+                        </div>
+                        <button class="btn btn-outline">Выбрать</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/my-projects.js"></script>
+</body>
+</html>

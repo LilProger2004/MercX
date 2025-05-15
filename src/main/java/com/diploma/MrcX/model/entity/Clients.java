@@ -1,23 +1,21 @@
-package com.diploma.MrcX.model;
+package com.diploma.MrcX.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "client")
-public class Client {
+@Table(name = "clients")
+public class Clients {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private UUID id;
+    private String id;
 
     @OneToMany(mappedBy = "client")
-    private List<Contracts> contracts;
+    private List<Order> orders;
 
 }

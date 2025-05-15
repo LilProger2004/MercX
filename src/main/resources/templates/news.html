@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новости | Фриланс Биржа</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/header-footer.css">
+    <link rel="stylesheet" href="/css/news.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Фриланс<span>Биржа</span></a>
+                <ul class="nav-links">
+                    <li><a href="/freelancer/all">Фрилансеры</a></li>
+                    <li><a href="/project/all">Проекты</a></li>
+                    <li><a href="/news">Новости</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <div th:if="${auth}">
+                        <a href="/me"><img src="/img/avatar.png" alt="Фото профиля" class="avatar"></a>
+                    </div>
+                    <div th:unless="${auth}">
+                        <a href="/" class="btn btn-outline">Войти</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <h1 class="page-title">Последние новости</h1>
+        
+        <div class="news-article">
+            <div class="article-header">
+                <span class="article-date">15 мая 2023</span>
+                <h2>Обновление системы рейтингов</h2>
+            </div>
+            <div class="article-content">
+                <img src="https://via.placeholder.com/800x400" alt="Обновление системы" class="article-image">
+                <p>Мы рады представить новую систему рейтингов, которая теперь учитывает не только отзывы, но и качество выполнения проектов...</p>
+                <a href="news-single.html" class="btn btn-outline">Читать далее</a>
+            </div>
+        </div>
+
+        <div class="news-article">
+            <div class="article-header">
+                <span class="article-date">10 мая 2023</span>
+                <h2>Новые категории проектов</h2>
+            </div>
+            <div class="article-content">
+                <p>Добавлены 5 новых категорий для проектов, включая блокчейн и IoT разработку...</p>
+                <a href="news-single.html" class="btn btn-outline">Читать далее</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2023 ФрилансБиржа. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -200,28 +200,6 @@
 </head>
 <body>
     <!-- Шапка -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="index.html" class="logo">Фриланс<span>Биржа</span></a>
-                <ul class="nav-links">
-                    <li><a href="/user/test">Фрилансеры</a></li>
-                    <li><a href="/project/">Проекты</a></li>
-                    <li><a href="projects.html">Заказчики</a></li>
-                    <li><a href="blog.html">Новости</a></li>
-                </ul>
-                <div class="auth-buttons">
-                    <div th:if="${auth}">
-                        <a href="/me"><img src="/img/avatar.png" alt="Фото профиля" class="avatar"></a>
-                    </div>
-                    <div th:unless="${auth}">
-                        <a href="/" class="btn btn-outline">Войти</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
-
     <!-- Основной контент -->
     <main class="container">
         <!-- Блок с основной информацией -->

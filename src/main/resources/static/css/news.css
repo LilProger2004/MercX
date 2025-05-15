@@ -1,0 +1,44 @@
+/* news.css - стили страницы новостей */
+.page-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.news-article {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.article-header {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.article-date {
+    color: #666;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.article-header h2 {
+    font-size: 24px;
+    color: var(--dark);
+}
+
+.article-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.article-content p {
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: #555;
+}

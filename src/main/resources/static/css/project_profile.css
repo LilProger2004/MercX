@@ -1,130 +1,193 @@
-.post-project-form {
+/* project-detail.css - стили страницы проекта */
+.project-header {
     background-color: white;
-    padding: 40px;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    max-width: 800px;
-    margin: 0 auto;
+    margin-bottom: 30px;
 }
 
-.form-group {
-    margin-bottom: 25px;
+.project-header h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
+.project-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.project-meta span {
+    padding: 5px 15px;
+    background-color: #f5f7fa;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.project-price {
+    color: var(--primary);
     font-weight: 500;
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
+.project-status {
+    font-weight: 500;
 }
 
-.form-group textarea {
-    min-height: 150px;
-    resize: vertical;
+.status-active {
+    background-color: #e8f5e9 !important;
+    color: #2e7d32;
 }
 
-.form-row {
+.project-content {
     display: flex;
-    gap: 20px;
+    gap: 30px;
 }
 
-.form-row .form-group {
+.project-description {
+    flex: 2;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.project-description h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.project-description h3 {
+    font-size: 18px;
+    margin: 20px 0 15px;
+}
+
+.project-sidebar {
     flex: 1;
 }
 
-.budget-types {
-    display: flex;
+.sidebar-block {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.sidebar-block h3 {
+    font-size: 18px;
     margin-bottom: 15px;
 }
 
-.budget-type {
-    flex: 1;
-    text-align: center;
-}
-
-.budget-type input {
-    display: none;
-}
-
-.budget-type label {
-    display: block;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.budget-type input:checked + label {
-    border-color: var(--primary);
-    background-color: rgba(67, 97, 238, 0.1);
-}
-
-.skills-selector {
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 5px;
-}
-
-.selected-skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.selected-skill {
-    background-color: var(--primary);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 14px;
+.client-info {
     display: flex;
     align-items: center;
+    gap: 15px;
 }
 
-.selected-skill button {
-    background: none;
-    border: none;
-    color: white;
-    margin-left: 5px;
-    cursor: pointer;
+.client-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.skills-list {
+.client-rating {
+    color: #ffc107;
+    font-size: 14px;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.project-skills {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    margin-top: 20px;
 }
 
-.skill-option {
+.skill-tag {
     background-color: #f0f0f0;
-    padding: 5px 10px;
+    padding: 5px 15px;
     border-radius: 20px;
     font-size: 14px;
-    cursor: pointer;
 }
 
-.skill-option:hover {
-    background-color: #e0e0e0;
-}
-
-.form-actions {
-    text-align: center;
+.project-freelancer {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     margin-top: 30px;
 }
 
-.form-note {
-    font-size: 14px;
-    color: #777;
-    margin-top: 10px;
+.project-freelancer h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.freelancer-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.freelancer-card.selected {
+    border-color: var(--primary);
+    background-color: rgba(67, 97, 238, 0.05);
+}
+
+.freelancer-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.freelancer-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.freelancer-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-danger {
+    background-color: #f44336;
+    color: white;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #d32f2f;
+}
+
+@media (max-width: 768px) {
+    .project-content {
+        flex-direction: column;
+    }
+
+    .freelancer-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .freelancer-actions {
+        margin-top: 15px;
+        flex-direction: column;
+        width: 100%;
+    }
 }
