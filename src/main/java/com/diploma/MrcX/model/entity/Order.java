@@ -1,12 +1,14 @@
 package com.diploma.MrcX.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "orders")
@@ -18,47 +20,61 @@ import java.util.List;
 public class Order {
 
     public enum OrderStatus {
-        NEW, IN_PROGRESS, COMPLETED, CANCELLED
+        NEW("Новый"), IN_PROGRESS("В процессе"), COMPLETED("Завершен"), CANCELLED("Отменен");
+
+        public final String label;
+
+        OrderStatus(String label) {
+            this.label = label;
+        }
     }
 
     @Id
+    @UuidGenerator
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private UUID id;
 
     @Column(nullable = false, length = 255)
+    @JsonProperty("name")
     private String name;
 
     @Column(columnDefinition = "TEXT")
+    @JsonProperty("description")
     private String description;
 
-    @Column(nullable = false, length = 255)
-    private String price;
+    @Column(name = "price")
+    @JsonProperty("price")
+    private int price;
 
     @ManyToOne
     private Freelancers freelancer;
 
+    @OneToMany(mappedBy = "order" , cascade = CascadeType.ALL)
+    List<Offers> offers;
+
     @ManyToOne
     private Clients client;
 
+    @ManyToOne
+    @JsonProperty("category")
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 50)
+    @Column( length = 50)
     @Builder.Default
     private OrderStatus status = OrderStatus.NEW;
 
-    @Column(name = "deadline", nullable = false, updatable = false)
-    private int deadline;
+    @Column(name = "deadline")
+    @JsonProperty("deadline")
+    private long deadline;
 
     @CreationTimestamp
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @Column(length = 100)
-    private String category;
-
-    @ElementCollection
-    @CollectionTable(name = "order_attachments", joinColumns = @JoinColumn(name = "order_id"))
-    @Column(name = "attachment_url")
-    private List<String> attachments;
+    @OneToMany
+    private List<Skills> skills;
 
     // Дополнительные методы для бизнес-логики
     public boolean isCompleted() {

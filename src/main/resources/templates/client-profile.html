@@ -226,7 +226,7 @@
                             <a href="#" class="btn btn-primary">
                                 <i class="fas fa-pencil-alt"></i> Редактировать
                             </a>
-                            <a href="post-project.html" class="btn btn-outline">
+                            <a href="project/add" class="btn btn-outline">
                                 <i class="fas fa-plus"></i> Новый проект
                             </a>
                         </div>
@@ -261,33 +261,31 @@
         <section class="projects-section">
             <div class="section-header">
                 <h2 class="section-title">Активные проекты</h2>
-                <a href="projects.html" class="btn btn-outline btn-sm">Все проекты</a>
+                <a href="/client/my-projects" class="btn btn-outline btn-sm">Все проекты</a>
             </div>
             
-            <div class="project-card">
-                <h3 class="project-title">Разработка корпоративного сайта</h3>
+            <div class="project-card" th:if="${order0 != null }">
+                <h3 class="project-title" th:text="${order0.name}"></h3>
                 <div class="project-meta">
-                    <span><i class="far fa-clock"></i> Опубликован 5 дней назад</span>
-                    <span><i class="fas fa-ruble-sign"></i> Бюджет: 75 000 - 100 000 руб.</span>
+                    <span><i class="far fa-clock" th:text="Создан + ${order0.createdAt}"></i></span>
+                    <span><i class="fas fa-ruble-sign" th:text="Цена + ${order0.price}"></i></span>
                 </div>
-                <span class="project-status status-active">В работе</span>
-                <p>Необходимо разработать современный корпоративный сайт для IT-компании. Уже есть дизайн в Figma.</p>
+                <span class="project-status status-active" th:text="${order0.status.label}"></span>
                 <div class="project-actions">
-                    <a href="#" class="btn btn-primary btn-sm">Подробнее</a>
+                    <a th:href="'/project/' + ${order0.id}" class="btn btn-primary btn-sm">Подробнее</a>
                     <a href="#" class="btn btn-outline btn-sm">Изменить</a>
                 </div>
             </div>
-            
-            <div class="project-card">
-                <h3 class="project-title">Редизайн мобильного приложения</h3>
+
+            <div class="project-card" th:if="${order1 != null}">
+                <h3 class="project-title" th:text="${order1.name}"></h3>
                 <div class="project-meta">
-                    <span><i class="far fa-clock"></i> Опубликован 2 дня назад</span>
-                    <span><i class="fas fa-ruble-sign"></i> Бюджет: 50 000 - 70 000 руб.</span>
+                    <span><i class="far fa-clock" th:text="Создан + ${order1.createdAt}"></i></span>
+                    <span><i class="fas fa-ruble-sign" th:text="Цена + ${order1.price}"></i></span>
                 </div>
-                <span class="project-status status-active">Идет выбор фрилансера</span>
-                <p>Требуется обновить UI/UX существующего приложения для iOS и Android. Нужен современный дизайн.</p>
+                <span class="project-status status-active" th:text="${order1.status.label}"></span>
                 <div class="project-actions">
-                    <a href="#" class="btn btn-primary btn-sm">Подробнее</a>
+                    <a th:href="'/project/' + ${order1.id}" class="btn btn-primary btn-sm">Подробнее</a>
                     <a href="#" class="btn btn-outline btn-sm">Изменить</a>
                 </div>
             </div>

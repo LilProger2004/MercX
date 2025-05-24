@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Фрилансеры | Биржа фрилансеров</title>
+    <title>Проекты | Биржа фрилансеров</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Подключение CSS -->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/header-footer.css">
-    <link rel="stylesheet" href="/css/freelancers.css">
+    <link rel="stylesheet" href="/css/projects.css">
 </head>
 <body>
     <!-- Header (как в index.html) -->
@@ -36,11 +36,10 @@
     <!-- Main Content -->
     <section class="section">
         <div class="container">
-            <h1>Найдите подходящего фрилансера</h1>
-            <p>Более 10,000 профессионалов в различных категориях</p>
-            
-            <!-- Filters -->
-<!--            <div class="filters">
+
+            <!-- Post Project Button -->
+            <!-- Filters (как в freelancers.html) -->
+            <!--<div class="filters">
                 <div class="filter-row">
                     <div class="filter-group">
                         <label for="category">Категория</label>
@@ -60,24 +59,23 @@
                 </div>
                 <div class="filter-row">
                     <div class="filter-group">
-                        <label for="rate">Ставка в час</label>
-                        <select id="rate">
-                            <option value="">Любая ставка</option>
-                            <option value="0-500">До 500 руб.</option>
-                            <option value="500-1000">500 - 1000 руб.</option>
-                            <option value="1000-2000">1000 - 2000 руб.</option>
-                            <option value="2000+">Более 2000 руб.</option>
+                        <label for="budget">Бюджет</label>
+                        <select id="budget">
+                            <option value="">Любой бюджет</option>
+                            <option value="0-10000">До 10 000 руб.</option>
+                            <option value="10000-30000">10 000 - 30 000 руб.</option>
+                            <option value="30000-50000">30 000 - 50 000 руб.</option>
+                            <option value="50000+">Более 50 000 руб.</option>
                         </select>
                     </div>
                     <div class="filter-group">
-                        <label for="location">Страна</label>
-                        <select id="location">
-                            <option value="">Любая страна</option>
-                            <option value="ru">Россия</option>
-                            <option value="ua">Украина</option>
-                            <option value="by">Беларусь</option>
-                            <option value="kz">Казахстан</option>
-                            <option value="other">Другие</option>
+                        <label for="duration">Срок</label>
+                        <select id="duration">
+                            <option value="">Любой срок</option>
+                            <option value="1week">До 1 недели</option>
+                            <option value="1month">До 1 месяца</option>
+                            <option value="3months">До 3 месяцев</option>
+                            <option value="long">Долгосрочный</option>
                         </select>
                     </div>
                 </div>
@@ -85,53 +83,46 @@
                     <button class="btn btn-primary">Применить фильтры</button>
                 </div>
             </div>
-            
-            &lt;!&ndash; Sort Options &ndash;&gt;
+
+            &lt;!&ndash; Sort Options (как в freelancers.html) &ndash;&gt;
             <div class="sort-options">
                 <div class="total-freelancers">
-                    Найдено: <strong>1,243 фрилансера</strong>
+                    Найдено: <strong>328 проектов</strong>
                 </div>
                 <div class="sort-by">
                     <span>Сортировать по:</span>
                     <select>
-                        <option value="rating">Рейтингу</option>
                         <option value="newest">Новизне</option>
-                        <option value="price-low">Цене (по возрастанию)</option>
-                        <option value="price-high">Цене (по убыванию)</option>
+                        <option value="budget-high">Бюджету (по убыванию)</option>
+                        <option value="budget-low">Бюджету (по возрастанию)</option>
                     </select>
-                </div>
-                <div class="view-options">
-                    <button class="active"><i class="fas fa-th-large"></i></button>
-                    <button><i class="fas fa-list"></i></button>
-                </div>
-            </div>-->
-            
-            <!-- Freelancers Grid -->
-            <div class="freelancer-grid">
-                <!-- Фрилансер 1 -->
-                <div class="freelancer-card" th:each="freelancer : ${freelancers}">
-                    <div class="freelancer-image" style="background-image: url('https://randomuser.me/api/portraits/men/22.jpg');"></div>
-                    <div class="freelancer-info">
-                        <h3 th:text="${freelancer.name}"></h3>
-                        <p>Full-stack разработчик</p>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <span>4.2 (87 отзывов)</span>
+                </div>-->
+            </div>
+
+            <!-- Projects List -->
+            <div class="projects-list" >
+                <!-- Project 1 -->
+                <div class="project-card" th:each="order :${orders}">
+                    <div class="project-header">
+                        <a th:href="'/project/' + ${order.id}" class="project-title" th:text="${order.getName()}"></a>
+                        <div class="project-budget" th:text="${order.price}"></div>
+                    </div>
+                    <div class="project-description" th:text="${order.description}">
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-meta">
+                            <span class="meta-item"><i class="far fa-clock" th:text="' Опубликован ' + ${order.createdAt} "></i></span>
+                            <span class="meta-item"><i class="far fa-comments" th:text="' ' + ${order.offers.size()} + ' предложений '"></i></span>
+                            <span class="project-status status-open">Открыт</span>
                         </div>
-                        <div class="skills">
-                            <span class="skill-tag">Node.js</span>
-                            <span class="skill-tag">React</span>
-                            <span class="skill-tag">MongoDB</span>
+                        <div class="project-skills">
+                            <span class="project-skill">OpenCart</span>
+                            <span class="project-skill">PHP</span>
+                            <span class="project-skill">JavaScript</span>
                         </div>
-                        <div class="rate">От 1500 руб./час</div>
-                        <a href="freelancer-profile.html" class="btn btn-primary">Посмотреть профиль</a>
                     </div>
                 </div>
-            </div>
+            <!-- Pagination (как в freelancers.html) -->
         </div>
     </section>
 

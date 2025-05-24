@@ -36,6 +36,9 @@ spring:
             authorization-uri: http://localhost:8085/realms/Freelance-Exchange/protocol/openid-connect/auth
             token-uri: http://keycloak:8085/realms/Freelance-Exchange/protocol/openid-connect/token
             jwk-set-uri:  http://keycloak:8085/realms/Freelance-Exchange/protocol/openid-connect/certs
+#            authorization-uri: http://localhost:8085/realms/Freelance-Exchange/protocol/openid-connect/auth
+#            token-uri: http://localhost:8085/realms/Freelance-Exchange/protocol/openid-connect/token
+#            jwk-set-uri:  http://localhost:8085/realms/Freelance-Exchange/protocol/openid-connect/certs
 logging:
   level:
     org.springframework.security: DEBUG

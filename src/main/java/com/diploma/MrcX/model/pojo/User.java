@@ -11,4 +11,16 @@ import lombok.Setter;
 public class User {
     @JsonProperty("id")
     private String id;
+
+    @JsonProperty("username")
+    private String username;
+
+    @JsonProperty("first_name")
+    private String firstName;
+
+    @JsonProperty("email")
+    private String email;
+
+    @JsonProperty("last_name")
+    private String lastName;
 }

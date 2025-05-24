@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Client {
+
     @JsonProperty("id")
     private String id;
 

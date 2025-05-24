@@ -1,6 +1,7 @@
 package com.diploma.MrcX.service;
 
 
+import lombok.NoArgsConstructor;
 import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@NoArgsConstructor
 public class KeycloakGroupService {
 
     @Value("${keycloak.server-url}")

@@ -7,6 +7,8 @@ import com.diploma.MrcX.service.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ClientServiceImplements implements ClientService {
@@ -18,6 +20,17 @@ public class ClientServiceImplements implements ClientService {
 
     @Override
     public void save(Clients client) {
+        client.setBalance(0);
         clientsRepository.save(client);
+    }
+
+    @Override
+    public List<Clients> findAll() {
+        return clientsRepository.findAll();
+    }
+
+    @Override
+    public Clients findById(String clientId) {
+        return clientsRepository.findById(clientId).orElseThrow();
     }
 }

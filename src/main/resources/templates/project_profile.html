@@ -34,24 +34,18 @@
     <!-- Основной контент -->
     <main class="container">
         <div class="project-header">
-            <h1>Разработка корпоративного сайта</h1>
+            <h1 th:text="${project.getName()}"></h1>
             <div class="project-meta">
-                <span class="project-price">Бюджет: 75 000 - 100 000 руб.</span>
-                <span class="project-deadline">Срок: 3 недели</span>
-                <span class="project-status status-active">Активен</span>
+                <span class="project-price" th:text="${project.price}"></span>
+                <span class="project-deadline" th:text="${dateEnd}"></span>
+                <span class="project-status status-active" th:text="${project.status.name()}">Активен</span>
             </div>
         </div>
 
         <div class="project-content">
             <div class="project-description">
                 <h2>Описание проекта</h2>
-                <p>Необходимо разработать современный корпоративный сайт для IT-компании. Уже есть дизайн в Figma, требуется верстка и программирование.</p>
-                <h3>Требования:</h3>
-                <ul>
-                    <li>Адаптивная верстка</li>
-                    <li>Интеграция с CMS WordPress</li>
-                    <li>Форма обратной связи</li>
-                </ul>
+                <p th:text="${project.description}"></p>
                 <div class="project-skills">
                     <span class="skill-tag">HTML/CSS</span>
                     <span class="skill-tag">JavaScript</span>
@@ -65,39 +59,14 @@
                     <div class="client-info">
                         <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Иван Петров" class="client-avatar">
                         <div>
-                            <h4>Иван Петров</h4>
-                            <div class="client-rating">
-                                <i class="fas fa-star"></i> 4.9 (27 отзывов)
-                            </div>
+                            <h4 th:text="${project.client.getName()}"></h4>
                         </div>
                     </div>
                 </div>
 
-                <div class="sidebar-block">
+                <div class="sidebar-block" th:if="${!freelancer || !isClient}">
                     <h3>Действия</h3>
-                    <a href="#" class="btn btn-primary btn-block">Оставить заявку</a>
-                    <a href="#" class="btn btn-outline btn-block">Сохранить проект</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Блок с исполнителем (виден только заказчику) -->
-        <div class="project-freelancer">
-            <h2>Исполнитель проекта</h2>
-            <div class="freelancer-card selected">
-                <div class="freelancer-info">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Елена Смирнова" class="freelancer-avatar">
-                    <div>
-                        <h3>Елена Смирнова</h3>
-                        <p>Веб-разработчик</p>
-                        <div class="rating">
-                            <i class="fas fa-star"></i> 5.0 (96 отзывов)
-                        </div>
-                    </div>
-                </div>
-                <div class="freelancer-actions">
-                    <a href="#" class="btn btn-outline">Написать сообщение</a>
-                    <a href="#" class="btn btn-danger">Заменить исполнителя</a>
+                    <a th:href="'/project/addProjectToFreelncer/' + ${project.id}" class="btn btn-primary btn-block">Оставить заявку</a>
                 </div>
             </div>
         </div>

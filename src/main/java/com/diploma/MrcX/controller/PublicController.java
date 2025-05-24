@@ -2,7 +2,6 @@ package com.diploma.MrcX.controller;
 
 import com.diploma.MrcX.model.entity.Clients;
 import com.diploma.MrcX.model.entity.Freelancers;
-import com.diploma.MrcX.model.pojo.Client;
 import com.diploma.MrcX.model.pojo.User;
 import com.diploma.MrcX.security.JwtUtils;
 import com.diploma.MrcX.service.ClientService;
@@ -54,22 +53,33 @@ public class PublicController {
     }
 
     @GetMapping("/freelancer")
-    public String addToFreelancerGroup(Authentication authentication) {
-        keycloakGroupService.addUserToGroup(jwtUtils.getUserIdFromJWT(authentication),keycloakGroupService.getGroupIdByName("freelancers"));
-        if (!freelancerService.existById(jwtUtils.getUserIdFromJWT(authentication))){
+    public String addToFreelancerGroup(Authentication authentication) throws JsonProcessingException {
+        String id = jwtUtils.getUserIdFromJWT(authentication);
+        keycloakGroupService.addUserToGroup(id,keycloakGroupService.getGroupIdByName("freelancers"));
+        if (!freelancerService.existById(id)){
+            User user = new ObjectMapper().readValue(keycloakAdminService.getUserById(id), User.class);
             Freelancers newFreelancer = new Freelancers();
-            newFreelancer.setId(jwtUtils.getUserIdFromJWT(authentication));
+            newFreelancer.setId(user.getId());
+            newFreelancer.setFirstName(user.getFirstName());
+            newFreelancer.setLastName(user.getLastName());
+            newFreelancer.setEmail(user.getEmail());
             freelancerService.save(newFreelancer);
         }
         return "redirect:/public/main";
     }
 
     @GetMapping("/client")
-    public String addToClientGroup(Authentication authentication) {
-        keycloakGroupService.addUserToGroup(jwtUtils.getUserIdFromJWT(authentication),keycloakGroupService.getGroupIdByName("clients"));
-        if (!clientService.existById(jwtUtils.getUserIdFromJWT(authentication))){
+    public String addToClientGroup(Authentication authentication) throws JsonProcessingException {
+        String id = jwtUtils.getUserIdFromJWT(authentication);
+        keycloakGroupService.addUserToGroup(id,keycloakGroupService.getGroupIdByName("clients"));
+        if (!clientService.existById(id)){
+            User user = new ObjectMapper().readValue(keycloakAdminService.getUserById(id), User.class);
             Clients newClient = new Clients();
-            newClient.setId(jwtUtils.getUserIdFromJWT(authentication));
+            newClient.setId(user.getId());
+            newClient.setName(user.getUsername());
+            newClient.setEmail(user.getEmail());
+            newClient.setFirstName(user.getFirstName());
+            newClient.setLastName(user.getLastName());
             clientService.save(newClient);
         }
         return "redirect:/public/main";
@@ -82,8 +92,17 @@ public class PublicController {
             model.addAttribute("user",user);
             return "freelancer_profile";
         } else if (keycloakGroupService.isUserInGroup(jwtUtils.getUserIdFromJWT(authentication), "clients")) {
-            Client client = new ObjectMapper().readValue(keycloakAdminService.getUserById(jwtUtils.getUserIdFromJWT(authentication)),Client.class);
+            boolean projectHave = false;
+            Clients client = clientService.findById(jwtUtils.getUserIdFromJWT(authentication));
             model.addAttribute("client",client);
+            if (client.getOrders().size() == 1){
+                model.addAttribute("order0" , client.getOrders().get(0));
+                projectHave = true;
+            }if (client.getOrders().size() == 2){
+                model.addAttribute("order1" , client.getOrders().get(1));
+                projectHave = true;
+            }
+
             return "client-profile";
         }
             return "redirect:/chooseSide";

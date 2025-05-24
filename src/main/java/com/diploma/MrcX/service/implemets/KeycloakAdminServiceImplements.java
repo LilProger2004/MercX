@@ -10,7 +10,6 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -46,7 +45,7 @@ public class KeycloakAdminServiceImplements implements KeycloakAdminService {
     }
 
     @Override
-    public List<Map<String, Object>> getAllUsers() {
+    public String getAllUsers() {
         String token = getAccessTokenFromKeycloak();
         String url = config.getServerUrl() + "/admin/realms/" + config.getRealm() + "/users";
 
@@ -54,8 +53,7 @@ public class KeycloakAdminServiceImplements implements KeycloakAdminService {
         headers.setBearerAuth(token);
         HttpEntity<?> entity = new HttpEntity<>(headers);
 
-        ResponseEntity<List> response = restTemplate.exchange(url, HttpMethod.GET, entity, List.class);
-        return response.getBody();
+        return String.valueOf(restTemplate.exchange(url, HttpMethod.GET, entity, String.class));
     }
 
     @Override

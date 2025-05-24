@@ -40,12 +40,8 @@
             <p>Тысячи проектов ждут своего исполнителя</p>
             
             <!-- Post Project Button -->
-            <div class="post-project">
-                <a href="post-project.html" class="btn btn-primary">Разместить проект</a>
-            </div>
-            
             <!-- Filters (как в freelancers.html) -->
-            <div class="filters">
+            <!--<div class="filters">
                 <div class="filter-row">
                     <div class="filter-group">
                         <label for="category">Категория</label>
@@ -90,7 +86,7 @@
                 </div>
             </div>
             
-            <!-- Sort Options (как в freelancers.html) -->
+            &lt;!&ndash; Sort Options (как в freelancers.html) &ndash;&gt;
             <div class="sort-options">
                 <div class="total-freelancers">
                     Найдено: <strong>328 проектов</strong>
@@ -103,18 +99,17 @@
                         <option value="budget-low">Бюджету (по возрастанию)</option>
                     </select>
                 </div>
-            </div>
+            </div>-->
             
             <!-- Projects List -->
-            <div class="projects-list">
+            <div class="projects-list" >
                 <!-- Project 1 -->
-                <div class="project-card">
+                <div class="project-card" th:each="order :${orders}">
                     <div class="project-header">
-                        <a href="project-details.html" class="project-title">Разработка интернет-магазина</a>
-                        <div class="project-budget">50 000 - 80 000 руб.</div>
+                        <a th:href="'/project/' + ${order.id}" class="project-title" th:text="${order.getName()}"></a>
+                        <div class="project-budget" th:text="${order.price}"></div>
                     </div>
-                    <div class="project-description">
-                        Нужно разработать интернет-магазин с каталогом товаров, корзиной и системой оплаты. Требуется интеграция с 1С. Дизайн уже готов, нужна только верстка и программирование. Предпочтение отдается фрилансерам с опытом работы с OpenCart.
+                    <div class="project-description" th:text="${order.description}">
                     </div>
                     <div class="project-footer">
                         <div class="project-meta">
@@ -129,100 +124,6 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <a href="project-details.html" class="project-title">Дизайн логотипа и фирменного стиля</a>
-                        <div class="project-budget">15 000 - 20 000 руб.</div>
-                    </div>
-                    <div class="project-description">
-                        Ищем дизайнера для создания логотипа и фирменного стиля для нового бренда одежды. Название бренда: "UrbanStyle". Стиль: минимализм, скандинавский дизайн. Целевая аудитория: молодые люди 18-35 лет. Нужно предоставить несколько вариантов на выбор.
-                    </div>
-                    <div class="project-footer">
-                        <div class="project-meta">
-                            <span class="meta-item"><i class="far fa-clock"></i> Опубликован 5 дней назад</span>
-                            <span class="meta-item"><i class="far fa-comments"></i> 8 предложений</span>
-                            <span class="project-status status-open">Открыт</span>
-                        </div>
-                        <div class="project-skills">
-                            <span class="project-skill">Логотип</span>
-                            <span class="project-skill">Фирменный стиль</span>
-                            <span class="project-skill">Adobe Illustrator</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <a href="project-details.html" class="project-title">Написание статей для блога</a>
-                        <div class="project-budget">500 руб./статья</div>
-                    </div>
-                    <div class="project-description">
-                        Требуется копирайтер для написания статей на тему цифрового маркетинга. Объем: 3000-5000 знаков. Темы предоставляем. Частота: 2 статьи в неделю. Долгосрочное сотрудничество. Требуется пример предыдущих работ.
-                    </div>
-                    <div class="project-footer">
-                        <div class="project-meta">
-                            <span class="meta-item"><i class="far fa-clock"></i> Опубликован 1 неделю назад</span>
-                            <span class="meta-item"><i class="far fa-comments"></i> 23 предложения</span>
-                            <span class="project-status status-open">Открыт</span>
-                        </div>
-                        <div class="project-skills">
-                            <span class="project-skill">Копирайтинг</span>
-                            <span class="project-skill">SEO</span>
-                            <span class="project-skill">Маркетинг</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 4 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <a href="project-details.html" class="project-title">Разработка мобильного приложения</a>
-                        <div class="project-budget">120 000 - 150 000 руб.</div>
-                    </div>
-                    <div class="project-description">
-                        Нужно разработать мобильное приложение для iOS и Android (нативное или кроссплатформенное решение). Приложение для фитнес-трекера с синхронизацией с Apple Health и Google Fit. Требуется опыт работы с подобными проектами.
-                    </div>
-                    <div class="project-footer">
-                        <div class="project-meta">
-                            <span class="meta-item"><i class="far fa-clock"></i> Опубликован 3 дня назад</span>
-                            <span class="meta-item"><i class="far fa-comments"></i> 5 предложений</span>
-                            <span class="project-status status-open">Открыт</span>
-                        </div>
-                        <div class="project-skills">
-                            <span class="project-skill">iOS</span>
-                            <span class="project-skill">Android</span>
-                            <span class="project-skill">Flutter</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 5 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <a href="project-details.html" class="project-title">SEO продвижение сайта</a>
-                        <div class="project-budget">25 000 руб./месяц</div>
-                    </div>
-                    <div class="project-description">
-                        Ищем SEO-специалиста для продвижения сайта строительной компании. Регион: Москва и МО. Текущие позиции низкие, требуется комплексная работа. Необходимо предоставить план работ и отчетность. Опыт работы с тематикой строительства приветствуется.
-                    </div>
-                    <div class="project-footer">
-                        <div class="project-meta">
-                            <span class="meta-item"><i class="far fa-clock"></i> Опубликован 1 день назад</span>
-                            <span class="meta-item"><i class="far fa-comments"></i> 7 предложений</span>
-                            <span class="project-status status-open">Открыт</span>
-                        </div>
-                        <div class="project-skills">
-                            <span class="project-skill">SEO</span>
-                            <span class="project-skill">Контекстная реклама</span>
-                            <span class="project-skill">Аналитика</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
             <!-- Pagination (как в freelancers.html) -->
             <div class="pagination">
                 <a href="#">&laquo;</a>
