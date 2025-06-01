@@ -1,4 +1,8 @@
 spring:
+  servlet:
+    multipart:
+      max-request-size: 2000MB
+      max-file-size: 2000MB
   application:
     name: mercX
   jpa:
@@ -44,7 +48,6 @@ logging:
     org.springframework.security: DEBUG
     org.springframework.web: DEBUG
 
-
 keycloak:
    server-url: http://keycloak:8085
    realm: Freelance-Exchange
@@ -53,3 +56,6 @@ keycloak:
 
 server:
   port: 8081
+
+upload:
+  path: /app/uploads

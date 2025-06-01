@@ -16,11 +16,7 @@ public class Profit {
     @Column(name = "id", nullable = false)
     private UUID id;
 
-
-    @Column(name = "offer_id")
-    private UUID offerId;
-
     @Column(name = "sum")
-    private int sum;
+    private double sum;
 
 }

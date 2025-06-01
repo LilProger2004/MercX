@@ -15,12 +15,12 @@ public class User {
     @JsonProperty("username")
     private String username;
 
-    @JsonProperty("first_name")
+    @JsonProperty("firstName")
     private String firstName;
 
     @JsonProperty("email")
     private String email;
 
-    @JsonProperty("last_name")
+    @JsonProperty("lastName")
     private String lastName;
 }

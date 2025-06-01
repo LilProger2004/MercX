@@ -1,5 +1,6 @@
 package com.diploma.MrcX.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,9 +17,11 @@ public class Skills {
     @GeneratedValue(strategy = GenerationType.UUID)
     @UuidGenerator
     @Column(name = "id", nullable = false)
+    @JsonProperty("id")
     private UUID id;
 
     @Column(name = "name", nullable = false)
+    @JsonProperty("name")
     private String name;
 
 }

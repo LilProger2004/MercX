@@ -7,6 +7,9 @@ import com.diploma.MrcX.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,8 +20,9 @@ public class OrderServiceIml implements OrderService {
     private OrderRepository orderRepository;
 
     @Override
-    public void save(Order order) {
-        orderRepository.save(order);
+    public Order save(Order order) {
+        order.setCreatedAt(LocalDate.parse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))));
+       return orderRepository.save(order);
     }
 
     @Override
@@ -27,13 +31,38 @@ public class OrderServiceIml implements OrderService {
     }
 
     @Override
+    public List<Order> findAllActiveByFreelancerId(String id, Order.OrderStatus status) {
+        return orderRepository.findByFreelancer_IdAndStatus(id, status);
+    }
+
+    @Override
+    public List<Order> findAllActive() {
+        return orderRepository.findByStatus(Order.OrderStatus.NEW);
+    }
+
+    @Override
     public void addFreelancerToOrder(Freelancers freelancer, UUID orderId) {
         orderRepository.updateFreelancerById(freelancer , orderId);
     }
 
     @Override
-    public boolean existByFreelancerId(String id) {
-        return orderRepository.existsByFreelancer_Id(id);
+    public List<Order> findActiveOrdersByClientId(String id, Order.OrderStatus status) {
+        return orderRepository.findByClient_IdAndStatus(id, status);
+    }
+
+    @Override
+    public List<Order> getSuccessOrders(Order.OrderStatus status, String clientId) {
+        return orderRepository.findByClient_IdAndStatus(clientId, status);
+    }
+
+    @Override
+    public List<Order> findCompletedOrdersByFreelancerId(String id) {
+        return orderRepository.findByFreelancer_IdAndStatus(id, Order.OrderStatus.COMPLETED);
+    }
+
+    @Override
+    public List<Order> findOrdersByFreeId(String id) {
+        return orderRepository.findByFreelancer_Id(id);
     }
 
     @Override

@@ -7,78 +7,119 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/header-footer.css">
     <link rel="stylesheet" href="/css/project_profile.css">
+    <style>
+
+        .solution-view {
+            margin-top: 15px;
+        }
+
+        .solution-item {
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .solution-files {
+            margin-top: 10px;
+        }
+
+        .solution-files a {
+            display: inline-block;
+            margin-right: 10px;
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .solution-files a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <!-- Шапка -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="index.html" class="logo">Фриланс<span>Биржа</span></a>
-                <ul class="nav-links">
-                    <li><a href="/freelancer/all">Фрилансеры</a></li>
-                    <li><a href="/project/all">Проекты</a></li>
-                    <li><a href="/news">Новости</a></li>
-                </ul>
-                <div class="auth-buttons">
-                    <div th:if="${auth}">
-                        <a href="/me"><img src="/img/avatar.png" alt="Фото профиля" class="avatar"></a>
+<!-- Шапка -->
+<header>
+    <div class="container">
+        <nav class="navbar">
+            <a href="index.html" class="logo">Фриланс<span>Биржа</span></a>
+            <ul class="nav-links">
+                <li><a href="/freelancer/all">Фрилансеры</a></li>
+                <li><a href="/project/all">Проекты</a></li>
+                <li><a href="/news">Новости</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <div th:if="${auth}">
+                    <a href="/me"><img src="/img/avatar.png" alt="Фото профиля" class="avatar"></a>
+                </div>
+                <div th:unless="${auth}">
+                    <a href="/" class="btn btn-outline">Войти</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Основной контент -->
+<main class="container">
+    <div class="project-header">
+        <h1 th:text="${project.getName()}"></h1>
+        <div class="project-meta">
+            <span class="project-price" th:text="${project.price} + 'BYN'"></span>
+            <span class="project-deadline" th:text="${dateEnd}"></span>
+            <span class="project-status status-active" th:text="${project.status.name()}">Активен</span>
+        </div>
+    </div>
+
+    <div class="project-content">
+        <div class="project-description">
+            <h2>Описание проекта</h2>
+            <p th:text="${project.description}"></p>
+            <div class="project-skills">
+                <span class="skill-tag">HTML/CSS</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">WordPress</span>
+            </div>
+        </div>
+
+        <div class="project-sidebar">
+            <div class="sidebar-block">
+                <h3>Заказчик</h3>
+                <div class="client-info">
+                    <img src="/img/img.png" alt="Иван Петров" class="client-avatar">
+                    <div>
+                        <h4 th:text="${project.client.getName()}"></h4>
                     </div>
-                    <div th:unless="${auth}">
-                        <a href="/" class="btn btn-outline">Войти</a>
+                </div>
+            </div>
+
+            <div class="sidebar-block" th:if="${result}">
+                <h3>Действия</h3>
+                <a th:href="'/project/addProjectToFreelncer/' + ${project.id}" class="btn btn-primary btn-block">Оставить
+                    заявку</a>
+            </div>
+
+            <div class="solution-view">
+                <div class="solution-item">
+                    <h3>Прикрепленные файлы:</h3>
+                    <div class="solution-files" id="solutionFiles" th:each="file :${commentFiles}">
+                        <ul>
+                            <li><a th:href="'file/' + ${file.id}" th:text="${file.name}"></a></li>
+                        </ul>
+                        <p th:if="${commentFiles.isEmpty()}">Файлы не прикреплены</p>
                     </div>
                 </div>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Основной контент -->
-    <main class="container">
-        <div class="project-header">
-            <h1 th:text="${project.getName()}"></h1>
-            <div class="project-meta">
-                <span class="project-price" th:text="${project.price}"></span>
-                <span class="project-deadline" th:text="${dateEnd}"></span>
-                <span class="project-status status-active" th:text="${project.status.name()}">Активен</span>
             </div>
         </div>
+    </div>
+</main>
 
-        <div class="project-content">
-            <div class="project-description">
-                <h2>Описание проекта</h2>
-                <p th:text="${project.description}"></p>
-                <div class="project-skills">
-                    <span class="skill-tag">HTML/CSS</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">WordPress</span>
-                </div>
-            </div>
-
-            <div class="project-sidebar">
-                <div class="sidebar-block">
-                    <h3>Заказчик</h3>
-                    <div class="client-info">
-                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Иван Петров" class="client-avatar">
-                        <div>
-                            <h4 th:text="${project.client.getName()}"></h4>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sidebar-block" th:if="${!freelancer || !isClient}">
-                    <h3>Действия</h3>
-                    <a th:href="'/project/addProjectToFreelncer/' + ${project.id}" class="btn btn-primary btn-block">Оставить заявку</a>
-                </div>
-            </div>
+<!-- Подвал -->
+<footer>
+    <div class="container">
+        <div class="copyright">
+            <p>&copy; 2023 ФрилансБиржа. Все права защищены.</p>
         </div>
-    </main>
-
-    <!-- Подвал -->
-    <footer>
-        <div class="container">
-            <div class="copyright">
-                <p>&copy; 2023 ФрилансБиржа. Все права защищены.</p>
-            </div>
-        </div>
-    </footer>
+    </div>
+</footer>
 </body>
 </html>

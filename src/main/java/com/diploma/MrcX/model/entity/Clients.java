@@ -24,7 +24,7 @@ public class Clients {
     private String email;
 
     @Column(name = "balance")
-    private int balance;
+    private double balance;
 
     @JsonProperty("first_name")
     @Column(name = "first_name")

@@ -104,7 +104,7 @@
                 <!-- Project 1 -->
                 <div class="project-card" th:each="order :${orders}">
                     <div class="project-header">
-                        <a th:href="'/project/' + ${order.id}" class="project-title" th:text="${order.getName()}"></a>
+                        <a th:href="'my-projects/' + ${order.id}" class="project-title" th:text="${order.getName()}"></a>
                         <div class="project-budget" th:text="${order.price}"></div>
                     </div>
                     <div class="project-description" th:text="${order.description}">
@@ -122,7 +122,6 @@
                         </div>
                     </div>
                 </div>
-            <!-- Pagination (как в freelancers.html) -->
         </div>
     </section>
 

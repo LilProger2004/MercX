@@ -47,6 +47,11 @@
     margin-bottom: 10px;
 }
 
+.profile-balance {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
 .profile-title {
     text-align: center;
     color: #777;

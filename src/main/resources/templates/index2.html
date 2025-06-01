@@ -13,7 +13,7 @@
 <header>
     <div class="container">
         <nav class="navbar">
-            <a href="index.html" class="logo">Фриланс<span>Биржа</span></a>
+            <a th:href="'/public/main'" class="logo">Биржа<span>Фрилансеров</span></a>
             <ul class="nav-links">
                 <li><a href="/freelancer/all">Фрилансеры</a></li>
                 <li><a href="/project/all">Проекты</a></li>
@@ -36,10 +36,6 @@
     <div class="container">
         <h1>Найдите идеального фрилансера для вашего бизнеса</h1>
         <p>Соединяем талантливых фрилансеров с клиентами по всему миру. Более 50 категорий услуг.</p>
-        <div class="search-bar">
-            <input type="text" placeholder="Например: веб-дизайн, копирайтинг, программирование...">
-            <button>Найти</button>
-        </div>
     </div>
 </section>
 
@@ -92,14 +88,14 @@
     <div class="container">
         <div class="section-title">
             <h2>Топ фрилансеры</h2>
-            <p>Лучшие исполнители с высоким рейтингом</p>
+            <p>Лучшие исполнители </p>
         </div>
         <div class="freelancer-grid">
-            <div class="freelancer-card">
+            <div class="freelancer-card" th:each="freelancer :${frelancers}">
                 <div class="freelancer-image"
                      style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
                 <div class="freelancer-info">
-                    <h3>Алексей Петров</h3>
+                    <h3 th:text="${freelancer.name}"></h3>
                     <p>Веб-разработчик</p>
                     <div class="rating">
                         <i class="fas fa-star"></i>

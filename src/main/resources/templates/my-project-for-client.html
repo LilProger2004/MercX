@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проект: Разработка сайта | Фриланс Биржа</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/header-footer.css">
+    <link rel="stylesheet" href="/css/project_profile.css">
+    <style>
+
+        .solution-section {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .solution-view {
+            margin-top: 15px;
+        }
+
+        .solution-item {
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .solution-text {
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            white-space: pre-line;
+        }
+
+        .solution-files {
+            margin-top: 10px;
+        }
+
+        .solution-files a {
+            display: inline-block;
+            margin-right: 10px;
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .solution-files a:hover {
+            text-decoration: underline;
+        }
+
+        .solution-status {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px dashed #ccc;
+        }
+
+        .solution-actions {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .reject-comment {
+            padding: 15px;
+            background: #fff8f8;
+            border: 1px solid #ffdddd;
+            border-radius: 5px;
+        }
+
+        .freelancer-offers {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .offer-list {
+            margin-top: 20px;
+            display: grid;
+            gap: 15px;
+        }
+
+        .offer-card {
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .offer-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .offer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .offer-details {
+            flex-grow: 1;
+        }
+
+        .offer-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            min-width: 120px;
+        }
+
+        .offer-price {
+            margin-bottom: 10px;
+        }
+
+        .offer-price strong {
+            font-size: 1.1em;
+        }
+
+        .offer-comment {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .offer-date {
+            color: #777;
+            font-size: 0.9em;
+        }
+        /* Дополнительные стили для новых элементов */
+        .edit-textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .skills-input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .project-actions {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .freelancer-offers {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .offer-list {
+            margin-top: 20px;
+            display: grid;
+            gap: 15px;
+        }
+
+        .offer-card {
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .offer-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .offer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .offer-details {
+            flex-grow: 1;
+        }
+
+        .offer-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            min-width: 120px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Фриланс<span>Биржа</span></a>
+                <ul class="nav-links">
+                    <li><a href="/freelancer/all">Фрилансеры</a></li>
+                    <li><a href="/project/all">Проекты</a></li>
+                    <li><a href="/news">Новости</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <div th:if="${auth}">
+                        <a href="/me"><img src="/img/avatar.png" alt="Фото профиля" class="avatar"></a>
+                    </div>
+                    <div th:unless="${auth}">
+                        <a href="/" class="btn btn-outline">Войти</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <div class="project-header">
+            <h1 id="projectTitle" th:text="${project.name}"></h1>
+            <div class="project-meta">
+                <span class="project-price" id="projectPrice" th:text="${project.price} + 'BYN'"></span>
+                <span class="project-deadline" id="projectDeadline" th:text="${dateEnd}"></span>
+                <span class="project-status status-active" id="projectStatus" >Активен</span>
+            </div>
+            <div class="project-actions" id="ownerActions">
+                <button class="btn btn-primary" id="editBtn">Редактировать</button>
+                <button class="btn btn-danger" id="deleteBtn">Удалить</button>
+                <button class="btn btn-success" id="saveBtn" style="display: none;">Сохранить</button>
+                <button class="btn btn-outline" id="cancelBtn" style="display: none;">Отмена</button>
+            </div>
+        </div>
+
+        <div class="project-content">
+            <div class="project-description">
+                <h2>Описание проекта</h2>
+                <p id="descriptionText" th:text="${project.description}"></p>
+                <textarea id="descriptionEdit" class="edit-textarea" th:text="${project.description}" style="display: none;"></textarea>
+
+                <div class="project-skills">
+                    <div id="skillsDisplay">
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">WordPress</span>
+                    </div>
+                    <div id="skillsEdit" style="display: none;">
+                        <input type="text" id="skillsInput" class="skills-input" value="HTML/CSS, JavaScript, WordPress" placeholder="HTML/CSS, JavaScript, WordPress">
+                        <small>Введите навыки через запятую</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-sidebar">
+                <div class="sidebar-block">
+                    <h3>Заказчик</h3>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Иван Петров" class="client-avatar">
+                        <div>
+                            <h4 id="clientName" th:text="${project.client.name}"></h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-block" id="projectManagement">
+                    <h3>Управление проектом</h3>
+                    <div class="form-group">
+                        <label for="statusSelect">Статус проекта:</label>
+                        <select id="statusSelect" class="form-control">
+                            <option value="ACTIVE">Активен</option>
+                            <option value="IN_PROGRESS">В работе</option>
+                            <option value="COMPLETED">Завершен</option>
+                            <option value="CANCELLED">Отменен</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="solution-section">
+            <h2>Решения фрилансера</h2>
+            <div class="solution-view">
+                <div class="solution-item">
+                    <h3>Комментарий к решению:</h3>
+                    <div class="solution-text" id="solutionText" th:text="${project.solutionComment}">
+                        <p th:text="${project.solutionComment}"></p>
+                    </div>
+
+                    <h3>Прикрепленные файлы:</h3>
+                    <div class="solution-files" id="solutionFiles" th:each="file :${files}">
+                        <ul>
+                            <li><a th:href="'file/' + ${file.id}" th:text="${file.name}"></a></li>
+                        </ul>
+                        <p th:if="${files.isEmpty()}">Файлы не прикреплены</p>
+                    </div>
+
+                    <div class="solution-status">
+                        <strong>Статус:</strong>
+                        <span id="solutionStatus" th:text="${project.status.label}"></span>
+                    </div>
+
+                    <!-- Кнопки принятия/отклонения -->
+                    <div class="solution-actions">
+                        <a type="submit" th:href="'success/' + ${project.id}" class="btn btn-success" id="approveBtn">Принять решение</a>
+                        <button class="btn btn-danger" id="rejectBtn">Отклонить решение</button>
+                    </div>
+
+                    <!-- Блок для комментария при отклонении (изначально скрыт) -->
+                    <div class="reject-comment" id="rejectComment" style="display: none; margin-top: 15px;">
+                        <label for="rejectReason"></label><textarea class="form-control" id="rejectReason" placeholder="Укажите причину отклонения..."></textarea>
+                        <button class="btn btn-primary" id="submitReject" style="margin-top: 10px;">Отправить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Секция с предложениями фрилансеров -->
+        <div class="offer-card"  th:each="offer : ${offers}">
+            <div class="offer-header">
+                <div class="offer-user-info">
+                    <h4><a href="/freelancer/102" th:text="${offer.freelancer.name}"></a></h4>
+                    <div class="user-rating">4.9 ★</div>
+                </div>
+            </div>
+            <div class="offer-details">
+                <div class="offer-comment">
+                    <p>Специализируюсь на корпоративных сайтах. Предлагаю индивидуальный подход и гарантию качества.</p>
+                </div>
+            </div>
+            <div class="offer-actions" th:if="${hasFreelancer}">
+                <a th:href="'addFreelancer/' + ${offer.freelancer.id} + '/toOrder/' + ${offer.order.id}" class="btn btn-success">Переназначить</a>
+            </div>
+            <div class="offer-actions" th:unless="${hasFreelancer}">
+                <a th:href="'addFreelancer/' + ${offer.freelancer.id} + '/toOrder/' + ${offer.order.id}" class="btn btn-primary">Принять</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2023 ФрилансБиржа. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const rejectBtn = document.getElementById('rejectBtn');
+            const rejectComment = document.getElementById('rejectComment');
+
+            // Обработка кнопки "Отклонить"
+            rejectBtn.addEventListener('click', function() {
+                rejectComment.style.display = 'block';
+            });
+
+
+        });
+    </script>
+</body>
+</html>

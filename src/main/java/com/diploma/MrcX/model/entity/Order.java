@@ -1,11 +1,13 @@
 package com.diploma.MrcX.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -17,6 +19,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Order {
 
     public enum OrderStatus {
@@ -44,7 +47,7 @@ public class Order {
 
     @Column(name = "price")
     @JsonProperty("price")
-    private int price;
+    private double price;
 
     @ManyToOne
     private Freelancers freelancer;
@@ -56,9 +59,8 @@ public class Order {
     private Clients client;
 
     @ManyToOne
-    @JsonProperty("category")
     @JoinColumn(name = "category_id")
-    private Category category;
+    private Category categori;
 
     @Enumerated(EnumType.STRING)
     @Column( length = 50)
@@ -71,7 +73,16 @@ public class Order {
 
     @CreationTimestamp
     @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    private LocalDate createdAt;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Files> files;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<CommentFiles> commentFiles;
+
+    @Column(name = "solution_comment")
+    private String solutionComment;
 
     @OneToMany
     private List<Skills> skills;

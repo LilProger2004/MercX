@@ -2,6 +2,7 @@ package com.diploma.MrcX.service.implemets;
 
 import com.diploma.MrcX.model.entity.Clients;
 import com.diploma.MrcX.model.entity.Freelancers;
+import com.diploma.MrcX.model.entity.Order;
 import com.diploma.MrcX.reposirtory.ClientsRepository;
 import com.diploma.MrcX.service.ClientService;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,6 @@ public class ClientServiceImplements implements ClientService {
 
     @Override
     public void save(Clients client) {
-        client.setBalance(0);
         clientsRepository.save(client);
     }
 

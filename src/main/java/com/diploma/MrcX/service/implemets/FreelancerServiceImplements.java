@@ -1,6 +1,8 @@
 package com.diploma.MrcX.service.implemets;
 
+import com.diploma.MrcX.model.entity.Category;
 import com.diploma.MrcX.model.entity.Freelancers;
+import com.diploma.MrcX.model.entity.Order;
 import com.diploma.MrcX.reposirtory.FreelancersRepository;
 import com.diploma.MrcX.service.FreelancerService;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +21,13 @@ public class FreelancerServiceImplements implements FreelancerService {
     }
 
     @Override
+    public void updateCatogoryByFreelancerId(String id, Category category) {
+        freelancersRepository.updateCategoryById(category,id);
+    }
+
+    @Override
     public void save(Freelancers freelancer) {
         freelancer.setPriceInHour(0);
-        freelancer.setBalance(0);
         freelancersRepository.save(freelancer);
     }
 

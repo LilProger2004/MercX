@@ -12,14 +12,9 @@ import java.util.UUID;
 @Table(name = "computing_procent")
 public class ComputingProcent {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private UUID id;
+    private String id;
 
-    @Column(name = "tax_percent")
-    private int taxPercent;
-
-    @Column(name = "my_percent")
-    private int myPercent;
-
+    @Column(name = "percent")
+    private double percent;
 }

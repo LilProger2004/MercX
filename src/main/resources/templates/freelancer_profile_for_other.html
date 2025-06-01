@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль фрилансера | Биржа фрилансеров</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <!-- Подключение CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/header-footer.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <style>
+        .skill-selector {
+            margin: 20px;
+            font-family: Arial, sans-serif;
+        }
+        select {
+            padding: 8px 12px;
+            font-size: 16px;
+            min-width: 200px;
+        }
+        button {
+            padding: 8px 16px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background: #dff0d8;
+            color: #3c763d;
+        }
+        .error {
+            background: #f2dede;
+            color: #a94442;
+        }
+    </style>
+</head>
+<body>
+<!-- Profile Header -->
+<section class="profile-header">
+    <div class="container">
+        <div class="profile-container">
+            <div class="profile-sidebar">
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Анна Смирнова">
+                    </div>
+                    <h2 class="profile-name" th:text="${freelancer.name}"></h2>
+                    <h2 class="profile-balance" th:text="'Баланс : ' + ${freelancer.balance}"></h2>
+                        <div class="profile-name" th:if="${hasCategory}">
+                            <h2 class="profile-name" th:text="${freelancer.category.name}"></h2>
+                        </div>
+                    <a href="/set-category" class="btn btn-primary">Изменить категорию</a>
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" th:text="${freelancer.orders.size()}"></div>
+                            <div class="stat-label">Активно</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-main">
+                    <div class="profile-card">
+                        <h2>Обо мне</h2>
+                        <p th:text="${id}"></p>
+                        <p>Привет! Я профессиональный UI/UX дизайнер с 5-летним опытом работы. Специализируюсь на
+                            создании удобных и красивых интерфейсов для веб и мобильных приложений.</p>
+                        <p>Работала с такими компаниями как Яндекс, Сбербанк, Mail.ru Group. Участвовала в разработке
+                            более 50 успешных проектов, от небольших лендингов до сложных корпоративных систем.</p>
+                        <p>Мой подход к работе: внимательность к деталям, ориентация на пользователя, соблюдение сроков.
+                            Всегда открыта для обсуждения вашего проекта и готова предложить наилучшее решение.</p>
+                    </div>
+
+                    <div class="profile-card">
+                        <div class="tab-nav">
+                            <div class="tab-link active" data-tab="portfolio">Портфолио </div>
+                            <div class="tab-link" data-tab="reviews">Отзывы (96)</div>
+                        </div>
+
+                        <div class="tab-content active" id="portfolio" th:if="${hasCompleteOrders}">
+                            <div class="portfolio-grid" th:each="completeOrder : ${completeOrders}">
+                                <div class="portfolio-item">
+                                    <div class="portfolio-overlay">
+                                        <h4 th:text="${completeOrder.name}"></h4>
+                                        <p th:text="${completeOrder.description}"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 20px;">
+                                <a href="#" class="btn btn-outline">Показать еще</a>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="reviews">
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="review-author">
+                                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Иван Петров">
+                                        <div>
+                                            <h4>Иван Петров</h4>
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="review-date">15 мая 2023</div>
+                                </div>
+                                <div class="review-content">
+                                    <p> Работали над дизайном мобильного приложения,
+                                        результат превзошел все ожидания. Учтены все пожелания, предложены отличные
+                                        решения. Сроки соблюдены, коммуникация на высшем уровне. Буду рекомендовать и
+                                        обращаться снова!</p>
+                                </div>
+                            </div>
+
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="review-author">
+                                        <img src="https://randomuser.me/api/portraits/women/28.jpg"
+                                             alt="Елена Ковалева">
+                                        <div>
+                                            <h4>Елена Ковалева</h4>
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="review-date">3 апреля 2023</div>
+                                </div>
+                                <div class="review-content">
+                                    <p>Отличный специалист! Сделала редизайн нашего сайта, очень довольны результатом.
+                                        Анна предложила несколько вариантов, мы выбрали оптимальный. Работа выполнена
+                                        качественно и в срок. Обязательно будем сотрудничать в будущем.</p>
+                                </div>
+                            </div>
+
+                            <div style="text-align: center; margin-top: 20px;">
+                                <a href="#" class="btn btn-outline">Показать все отзывы</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Footer (как в index.html) -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>ФрилансБиржа</h3>
+                <p>Лучшая платформа для поиска фрилансеров и удаленной работы. Соединяем профессионалов и клиентов с
+                    2023 года.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Для фрилансеров</h3>
+                <ul>
+                    <li><a href="#">Как начать работать</a></li>
+                    <li><a href="#">Создать профиль</a></li>
+                    <li><a href="#">Найти проекты</a></li>
+                    <li><a href="#">Тарифы</a></li>
+                    <li><a href="#">Портфолио</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Для клиентов</h3>
+                <ul>
+                    <li><a href="#">Разместить проект</a></li>
+                    <li><a href="#">Найти фрилансера</a></li>
+                    <li><a href="#">Как оплачивать</a></li>
+                    <li><a href="#">Безопасность</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Компания</h3>
+                <ul>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Карьера</a></li>
+                    <li><a href="#">Блог</a></li>
+                    <li><a href="#">Контакты</a></li>
+                    <li><a href="#">Политика конфиденциальности</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 ФрилансБиржа. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Tab switching
+    document.querySelectorAll('.tab-link').forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active class from all tabs and contents
+            document.querySelectorAll('.tab-link').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+            // Add active class to clicked tab and corresponding content
+            tab.classList.add('active');
+            const tabId = tab.getAttribute('data-tab');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('/api/skills/all')
+            .then(response => response.json())
+            .then(skills => {
+                populateSkillsDropdown(skills);
+            })
+            .catch(error => {
+                console.error('Ошибка загрузки навыков:', error);
+                document.getElementById('statusMessage').textContent = 'Ошибка загрузки списка навыков';
+                document.getElementById('statusMessage').className = 'status error';
+            });
+    });
+
+    // Заполняем выпадающий список
+    function populateSkillsDropdown(skills) {
+        const dropdown = document.getElementById('skillsDropdown');
+        dropdown.innerHTML = '<option value="">-- Выберите навык --</option>';
+
+        skills.forEach(skill => {
+            const option = document.createElement('option');
+            option.value = skill.id;
+            option.textContent = skill.name;
+            dropdown.appendChild(option);
+        });
+    }
+
+    // Отправка выбранного навыка
+    function sendSelectedSkill() {
+        const dropdown = document.getElementById('skillsDropdown');
+        const selectedSkillId = dropdown.value;
+        const selectedSkillName = dropdown.options[dropdown.selectedIndex].text;
+
+        if (!selectedSkillId) {
+            document.getElementById('statusMessage').textContent = 'Пожалуйста, выберите навык';
+            document.getElementById('statusMessage').className = 'status error';
+            return;
+        }
+
+        sendSkillToBackend({
+            id: selectedSkillId,
+            name: selectedSkillName
+        });
+    }
+
+    // Функция отправки навыка на бэкенд
+    function sendSkillToBackend(skill) {
+        const statusElement = document.getElementById('statusMessage');
+
+        // Отправляем только имя навыка (String), а не весь объект
+        fetch('/api/skills', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(skill.name) // Отправляем только строку с именем
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => Promise.reject(err));
+                }
+                return response.json();
+            })
+            .then(data => {
+                statusElement.textContent = `Навык "${skill.name}" успешно добавлен`;
+                statusElement.className = 'status success';
+            })
+            .catch(error => {
+                const errorMsg = error.error || error.message || 'Неизвестная ошибка';
+                statusElement.textContent = `Ошибка: ${errorMsg}`;
+                statusElement.className = 'status error';
+                console.error('Ошибка:', error);
+            });
+    }
+</script>
+</body>
+</html>

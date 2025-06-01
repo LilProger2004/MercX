@@ -7,12 +7,22 @@ import java.util.List;
 import java.util.UUID;
 
 public interface OrderService {
-    void save(Order order);
+    Order save(Order order);
     List<Order> findAll();
+
+    List<Order> findAllActiveByFreelancerId(String id, Order.OrderStatus status);
+
+    List<Order> findAllActive();
 
     void addFreelancerToOrder(Freelancers freelancer, UUID orderId);
 
-    boolean existByFreelancerId(String id);
+    List<Order> findActiveOrdersByClientId(String id , Order.OrderStatus status);
+
+    List<Order> getSuccessOrders(Order.OrderStatus status,String clientId);
+
+    List<Order> findCompletedOrdersByFreelancerId(String id);
+
+    List<Order> findOrdersByFreeId(String id);
 
     Order findBuId(UUID id);
 }

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проект: Разработка сайта | Фриланс Биржа</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/header-footer.css">
+    <link rel="stylesheet" href="/css/project_profile.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Фриланс<span>Биржа</span></a>
+                <ul class="nav-links">
+                    <li><a href="/freelancer/all">Фрилансеры</a></li>
+                    <li><a href="/project/all">Проекты</a></li>
+                    <li><a href="/news">Новости</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <div th:if="${auth}">
+                        <a href="/me"><img src="/img/avatar.png" alt="Фото профиля" class="avatar"></a>
+                    </div>
+                    <div th:unless="${auth}">
+                        <a href="/" class="btn btn-outline">Войти</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <div class="project-header">
+        <h1 th:text="${project.getName()}"></h1>
+        <div class="project-meta">
+            <span class="project-price" th:text="${project.price}"></span>
+            <span class="project-deadline" th:text="${dateEnd}"></span>
+            <span class="project-status status-active" th:text="${project.status.name()}">Активен</span>
+        </div>
+        <div class="project-actions" >
+            <button class="btn btn-primary" id="editBtn">Редактировать</button>
+            <button class="btn btn-danger" id="deleteBtn">Удалить</button>
+            <button class="btn btn-success" id="saveBtn" style="display: none;">Сохранить</button>
+            <button class="btn btn-outline" id="cancelBtn" style="display: none;">Отмена</button>
+        </div>
+    </div>
+
+    <div class="project-content">
+        <div class="project-description">
+            <h2>Описание проекта</h2>
+            <p id="descriptionText" th:text="${project.description}"></p>
+            <textarea id="descriptionEdit" class="edit-textarea" style="display: none;" th:text="${project.description}"></textarea>
+
+            <!--<div class="project-skills">
+                <div id="skillsDisplay">
+                    <span th:each="skill : ${project.skills}" class="skill-tag" th:text="${skill}"></span>
+                </div>
+                <div id="skillsEdit" style="display: none;">
+                    <input type="text" id="skillsInput" class="skills-input" th:value="${#strings.listJoin(project.skills, ',')}" placeholder="HTML/CSS, JavaScript, WordPress">
+                    <small>Введите навыки через запятую</small>
+                </div>
+            </div>-->
+        </div>
+
+            <div class="project-sidebar">
+                <div class="sidebar-block">
+                    <h3>Заказчик</h3>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Иван Петров" class="client-avatar">
+                        <div>
+                            <h4 th:text="${project.client.getName()}"></h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-block">
+                    <h3>Управление проектом</h3>
+                    <div class="form-group">
+                        <label for="statusSelect">Статус проекта:</label>
+                        <select id="statusSelect" class="form-control">
+                            <option value="ACTIVE">Активен</option>
+                            <option value="IN_PROGRESS">В работе</option>
+                            <option value="COMPLETED">Завершен</option>
+                            <option value="CANCELLED">Отменен</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Секция с предложениями фрилансеров -->
+        <div class="freelancer-offers">
+            <h2>Предложения фрилансеров</h2>
+
+            <div th:if="${offers.isEmpty()}">
+                <p>Пока нет предложений от фрилансеров.</p>
+            </div>
+
+            <div class="offer-list" th:unless="${offers.isEmpty()}">
+                <div class="offer-card" th:each="offer : ${offers}">
+                    <div class="offer-header">
+                        <!--<img th:src="${offer.freelancer.avatarUrl}" alt="Аватар фрилансера" class="offer-avatar">-->
+                        <div class="offer-user-info">
+                            <!--<h4><a th:h<div class="freelancer-rating" th:text="${offer.freelancer.rating} + ' ★'"></div>-->ref="'/freelancer/' + ${offer.freelancer.id}" th:text="${offer.freelancer.name}"></a></h4>
+
+                        </div>
+                    </div>
+                    <div class="offer-details">
+                        <div class="offer-price">
+                            <span>Предложенная цена:</span>
+                            <strong th:text="${project.price} + ' ₽'"></strong>
+                        </div>
+                        <!--<div class="offer-comment">
+                            <p th:text="${offer.comment}"></p>
+                        </div>-->
+                    </div>
+                    <div class="offer-actions">
+                        <button class="btn btn-success" >Принять</button>
+                        <button class="btn btn-outline" >Отклонить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2023 ФрилансБиржа. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!--<script>
+        // Режим редактирования
+        document.getElementById('editBtn').addEventListener('click', function() {
+            document.getElementById('descriptionText').style.display = 'none';
+            document.getElementById('descriptionEdit').style.display = 'block';
+            document.getElementById('skillsDisplay').style.display = 'none';
+            document.getElementById('skillsEdit').style.display = 'block';
+            document.getElementById('editBtn').style.display = 'none';
+            document.getElementById('deleteBtn').style.display = 'none';
+            document.getElementById('saveBtn').style.display = 'inline-block';
+            document.getElementById('cancelBtn').style.display = 'inline-block';
+        });
+
+        document.getElementById('cancelBtn').addEventListener('click', function() {
+            document.getElementById('descriptionText').style.display = 'block';
+            document.getElementById('descriptionEdit').style.display = 'none';
+            document.getElementById('skillsDisplay').style.display = 'block';
+            document.getElementById('skillsEdit').style.display = 'none';
+            document.getElementById('editBtn').style.display = 'inline-block';
+            document.getElementById('deleteBtn').style.display = 'inline-block';
+            document.getElementById('saveBtn').style.display = 'none';
+            document.getElementById('cancelBtn').style.display = 'none';
+        });
+
+        document.getElementById('deleteBtn').addEventListener('click', function() {
+            if(confirm('Вы действительно хотите удалить этот проект?')) {
+                fetch('/project/' + ${project.id}, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then(response => {
+                    if(response.ok) {
+                        window.location.href = '/project/all';
+                    }
+                });
+            }
+        });
+
+        document.getElementById('saveBtn').addEventListener('click', function() {
+            const updatedData = {
+                description: document.getElementById('descriptionEdit').value,
+                skills: document.getElementById('skillsInput').value.split(',').map(skill => skill.trim()),
+                status: document.getElementById('statusSelect').value
+            };
+
+            fetch('/project/' + ${project.id}, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedData)
+            })
+            .then(response => {
+                if(response.ok) {
+                    location.reload();
+                }
+            });
+        });
+
+        function acceptOffer(offerId) {
+            fetch('/offer/' + offerId + '/accept', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => {
+                if(response.ok) {
+                    location.reload();
+                }
+            });
+        }
+
+        function rejectOffer(offerId) {
+            fetch('/offer/' + offerId + '/reject', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => {
+                if(response.ok) {
+                    location.reload();
+                }
+            });
+        }
+
+        // Устанавливаем текущий статус в селекторе
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentStatus = '${project.status}';
+            if(currentStatus) {
+                document.getElementById('statusSelect').value = currentStatus;
+            }
+        });
+    </script>-->
+</body>
+</html>

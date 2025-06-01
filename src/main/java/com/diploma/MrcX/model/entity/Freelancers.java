@@ -29,20 +29,24 @@ public class Freelancers {
     private String firstName;
 
     @Column(name = "balance")
-    private int balance;
+    private double balance;
 
     @JsonProperty("last_name")
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToOne
-    private Category category;
+    @Column(name = "about_me")
+    private String aboutMe;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+     private Category category;
     
     @OneToMany(mappedBy = "freelancer" , cascade = CascadeType.ALL)
     List<Offers> offers;
 
     @Column(name = "price_in_hour")
-    private int priceInHour;
+    private double priceInHour;
 
     @OneToMany(mappedBy = "freelancer")
     private List<Order> orders;

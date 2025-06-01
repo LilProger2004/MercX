@@ -8,6 +8,9 @@ import com.diploma.MrcX.service.OffersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class OffersServiceImplementes implements OffersService {
@@ -22,7 +25,17 @@ public class OffersServiceImplementes implements OffersService {
     }
 
     @Override
-    public boolean existByFreelancerId(String id) {
-        return offersRepository.existsByFreelancer_Id(id);
+    public boolean existByFreelancerId(String id, UUID orderId) {
+        return offersRepository.existsByFreelancer_Id(id,orderId);
+    }
+
+    @Override
+    public void deleteFrelancer(Freelancers freelancer, Order order) {
+        offersRepository.deleteByFreelancerAndOrder(freelancer,order);
+    }
+
+    @Override
+    public List<Offers> findByOrderId(UUID id) {
+        return offersRepository.findByOrder_Id(id);
     }
 }
