@@ -15,7 +15,7 @@
     <header>
         <div class="container">
             <nav class="navbar">
-                <a href="index.html" class="logo">Фриланс<span>Биржа</span></a>
+                <a href="index.html" class="logo">Биржа<span>Фрилансеров</span></a>
                 <ul class="nav-links">
                     <li><a href="/freelancer/all">Фрилансеры</a></li>
                     <li><a href="/project/all">Проекты</a></li>
@@ -110,10 +110,9 @@
             <div class="freelancer-grid">
                 <!-- Фрилансер 1 -->
                 <div class="freelancer-card" th:each="freelancer : ${freelancers}">
-                    <div class="freelancer-image" style="background-image: url('https://randomuser.me/api/portraits/men/22.jpg');"></div>
+                    <div class="freelancer-image" style="background-image: image-set('/img/unknown.jpg');"></div>
                     <div class="freelancer-info">
                         <h3 th:text="${freelancer.name}"></h3>
-                        <p>Full-stack разработчик</p>
                         <div class="rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -122,12 +121,7 @@
                             <i class="far fa-star"></i>
                             <span>4.2 (87 отзывов)</span>
                         </div>
-                        <div class="skills">
-                            <span class="skill-tag">Node.js</span>
-                            <span class="skill-tag">React</span>
-                            <span class="skill-tag">MongoDB</span>
-                        </div>
-                        <div class="rate">От 1500 руб./час</div>
+                        <div class="rate" th:text="${freelancer.category.name}"></div>
                         <a href="freelancer-profile.html" class="btn btn-primary">Посмотреть профиль</a>
                     </div>
                 </div>

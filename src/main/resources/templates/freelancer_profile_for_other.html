@@ -86,7 +86,7 @@
                         </div>
 
                         <div class="tab-content active" id="portfolio" th:if="${hasCompleteOrders}">
-                            <div class="portfolio-grid" th:each="completeOrder : ${completeOrders}">
+                            <div class="portfolio-grid" th:each="completeOrder : ${completeProjects}">
                                 <div class="portfolio-item">
                                     <div class="portfolio-overlay">
                                         <h4 th:text="${completeOrder.name}"></h4>

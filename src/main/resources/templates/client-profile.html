@@ -249,17 +249,18 @@
             <a href="/client/my-projects" class="btn btn-outline btn-sm">Все проекты</a>
         </div>
 
-        <div class="project-card" th:if="!${newOrders.isEmpty()}">
-            <div th:each="newOrder : ${newOrders}">
-                <h3 class="project-title" th:text="${newOrder.name}"></h3>
-                <div class="project-meta">
-                    <span><i class="far fa-clock" th:text="Создан + ${newOrder.createdAt}"></i></span>
-                    <span><i class="fas fa-ruble-sign" th:text="Цена + ${newOrder.price}"></i></span>
-                </div>
-                <span class="project-status status-active" th:text="${newOrder.status.label}"></span>
-                <div class="project-actions">
-                    <a th:href="'/client/my-projects/' + ${newOrder.id}" class="btn btn-primary btn-sm">Подробнее</a>
-                    <a href="#" class="btn btn-outline btn-sm">Изменить</a>
+        <div th:if="!${newOrders.isEmpty()}">
+            <div class="project-card" th:each="newOrder : ${newOrders}">
+                <div>
+                    <h3 class="project-title" th:text="${newOrder.name}"></h3>
+                    <div class="project-meta">
+                    </div>
+                    <span class="project-status status-active" th:text="${newOrder.status.label}"></span>
+                    <div class="project-actions">
+                        <a th:href="'/client/my-projects/' + ${newOrder.id}"
+                           class="btn btn-primary btn-sm">Подробнее</a>
+                        <a href="#" class="btn btn-outline btn-sm">Изменить</a>
+                    </div>
                 </div>
             </div>
         </div>

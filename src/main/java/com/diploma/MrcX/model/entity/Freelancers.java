@@ -1,16 +1,22 @@
 package com.diploma.MrcX.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "freelancers")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Freelancers {
     @Id
     @Column(name = "id", nullable = false)
@@ -36,6 +42,7 @@ public class Freelancers {
     private String lastName;
 
     @Column(name = "about_me")
+    @JsonProperty("description")
     private String aboutMe;
 
     @ManyToOne

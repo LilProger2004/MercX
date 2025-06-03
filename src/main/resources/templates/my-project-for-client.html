@@ -220,7 +220,7 @@
     <header>
         <div class="container">
             <nav class="navbar">
-                <a href="index.html" class="logo">Фриланс<span>Биржа</span></a>
+                <a href="index.html" class="logo">Биржа<span>Фрилансеров</span></a>
                 <ul class="nav-links">
                     <li><a href="/freelancer/all">Фрилансеры</a></li>
                     <li><a href="/project/all">Проекты</a></li>
@@ -250,8 +250,6 @@
             <div class="project-actions" id="ownerActions">
                 <button class="btn btn-primary" id="editBtn">Редактировать</button>
                 <button class="btn btn-danger" id="deleteBtn">Удалить</button>
-                <button class="btn btn-success" id="saveBtn" style="display: none;">Сохранить</button>
-                <button class="btn btn-outline" id="cancelBtn" style="display: none;">Отмена</button>
             </div>
         </div>
 
@@ -278,7 +276,7 @@
                 <div class="sidebar-block">
                     <h3>Заказчик</h3>
                     <div class="client-info">
-                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Иван Петров" class="client-avatar">
+                        <img src="/img/unknown.jpg" alt="Иван Петров" class="client-avatar">
                         <div>
                             <h4 id="clientName" th:text="${project.client.name}"></h4>
                         </div>
@@ -341,7 +339,7 @@
         <div class="offer-card"  th:each="offer : ${offers}">
             <div class="offer-header">
                 <div class="offer-user-info">
-                    <h4><a href="/freelancer/102" th:text="${offer.freelancer.name}"></a></h4>
+                    <h4><a th:href="'/freelancer/' + ${offer.freelancer.id}" th:text="${offer.freelancer.name}"></a></h4>
                     <div class="user-rating">4.9 ★</div>
                 </div>
             </div>

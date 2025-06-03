@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Профиль фрилансера | Биржа фрилансеров</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <!-- Подключение CSS -->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/header-footer.css">
@@ -15,11 +16,13 @@
             margin: 20px;
             font-family: Arial, sans-serif;
         }
+
         select {
             padding: 8px 12px;
             font-size: 16px;
             min-width: 200px;
         }
+
         button {
             padding: 8px 16px;
             background: #4CAF50;
@@ -28,15 +31,18 @@
             cursor: pointer;
             margin-left: 10px;
         }
+
         .status {
             margin-top: 10px;
             padding: 10px;
             border-radius: 4px;
         }
+
         .success {
             background: #dff0d8;
             color: #3c763d;
         }
+
         .error {
             background: #f2dede;
             color: #a94442;
@@ -51,13 +57,13 @@
             <div class="profile-sidebar">
                 <div class="profile-card">
                     <div class="profile-avatar">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Анна Смирнова">
+                        <img src="/img/unknown.jpg">
                     </div>
                     <h2 class="profile-name" th:text="${freelancer.name}"></h2>
                     <h2 class="profile-balance" th:text="'Баланс : ' + ${freelancer.balance}"></h2>
-                        <div class="profile-name" th:if="${hasCategory}">
-                            <h2 class="profile-name" th:text="${freelancer.category.name}"></h2>
-                        </div>
+                    <div class="profile-name" th:if="${hasCategory}">
+                        <h2 class="profile-name" th:text="${freelancer.category.name}"></h2>
+                    </div>
                     <a href="/set-category" class="btn btn-primary">Изменить категорию</a>
                     <div class="profile-stats">
                         <div class="stat-item">
@@ -68,7 +74,6 @@
                 </div>
 
 
-
                 <div class="profile-card">
                     <h3>Навыки</h3>
                     <div class="skills" th:if="!${freelancer.skills.isEmpty()}">
@@ -77,8 +82,8 @@
                     <div class="skill-selector">
                         <h2>Выберите навык</h2>
                         <label for="skillsDropdown"></label><select id="skillsDropdown">
-                            <option value="">-- Загрузка навыков --</option>
-                        </select>
+                        <option value="">-- Загрузка навыков --</option>
+                    </select>
                         <button onclick="sendSelectedSkill()">Отправить</button>
                         <div id="statusMessage" class="status"></div>
                     </div>
@@ -88,17 +93,13 @@
                     <div class="profile-card">
                         <h2>Обо мне</h2>
                         <p th:text="${id}"></p>
-                        <p>Привет! Я профессиональный UI/UX дизайнер с 5-летним опытом работы. Специализируюсь на
-                            создании удобных и красивых интерфейсов для веб и мобильных приложений.</p>
-                        <p>Работала с такими компаниями как Яндекс, Сбербанк, Mail.ru Group. Участвовала в разработке
-                            более 50 успешных проектов, от небольших лендингов до сложных корпоративных систем.</p>
-                        <p>Мой подход к работе: внимательность к деталям, ориентация на пользователя, соблюдение сроков.
-                            Всегда открыта для обсуждения вашего проекта и готова предложить наилучшее решение.</p>
+                        <p th:text="${freelancer.aboutMe}"></p>
                     </div>
 
+                    <a href="/freelancer/new-description" class="btn btn-primary">Изменить описание</a>
                     <div class="profile-card">
                         <div class="tab-nav">
-                            <div class="tab-link active" data-tab="portfolio">Портфолио </div>
+                            <div class="tab-link active" data-tab="portfolio">Портфолио</div>
                             <div class="tab-link" data-tab="reviews">Отзывы (96)</div>
                         </div>
 
@@ -173,13 +174,12 @@
                     </div>
                 </div>
             </div>
-            </div>
         </div>
-        <a href="/freelancer/myActiveProgects" class="btn btn-primary">Активные проекты</a>
+    </div>
+    <a href="/freelancer/myActiveProgects" class="btn btn-primary">Активные проекты</a>
     </div>
     <a href="/logout" class="btn btn-danger">Выйти</a>
 </section>
-
 
 
 <!-- Footer (как в index.html) -->
@@ -248,7 +248,7 @@
             document.getElementById(tabId).classList.add('active');
         });
     });
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         fetch('/api/skills/all')
             .then(response => response.json())
             .then(skills => {
@@ -299,7 +299,7 @@
         // Отправляем только имя навыка (String), а не весь объект
         fetch('/api/skills', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(skill.name) // Отправляем только строку с именем
         })
             .then(response => {

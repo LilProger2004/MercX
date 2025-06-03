@@ -37,11 +37,11 @@
     </style>
 </head>
 <body>
-<!-- Шапка -->
+
 <header>
     <div class="container">
         <nav class="navbar">
-            <a href="index.html" class="logo">Фриланс<span>Биржа</span></a>
+            <a href="index.html" class="logo">Биржа<span>Фрилансеров</span></a>
             <ul class="nav-links">
                 <li><a href="/freelancer/all">Фрилансеры</a></li>
                 <li><a href="/project/all">Проекты</a></li>
@@ -59,7 +59,6 @@
     </div>
 </header>
 
-<!-- Основной контент -->
 <main class="container">
     <div class="project-header">
         <h1 th:text="${project.getName()}"></h1>
@@ -74,18 +73,13 @@
         <div class="project-description">
             <h2>Описание проекта</h2>
             <p th:text="${project.description}"></p>
-            <div class="project-skills">
-                <span class="skill-tag">HTML/CSS</span>
-                <span class="skill-tag">JavaScript</span>
-                <span class="skill-tag">WordPress</span>
-            </div>
         </div>
 
         <div class="project-sidebar">
             <div class="sidebar-block">
                 <h3>Заказчик</h3>
                 <div class="client-info">
-                    <img src="/img/img.png" alt="Иван Петров" class="client-avatar">
+                    <img src="/img/unknown.jpg" class="client-avatar">
                     <div>
                         <h4 th:text="${project.client.getName()}"></h4>
                     </div>

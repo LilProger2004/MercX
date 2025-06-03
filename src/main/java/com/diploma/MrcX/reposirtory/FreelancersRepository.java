@@ -12,4 +12,9 @@ public interface FreelancersRepository extends JpaRepository<Freelancers, String
     @Modifying
     @Query("update Freelancers f set f.category = ?1 where f.id = ?2")
     int updateCategoryById(Category category, String id);
+
+    @Transactional
+    @Modifying
+    @Query("update Freelancers f set f.aboutMe = ?1 where f.id = ?2")
+    int updateAboutMeById(String aboutMe, String id);
 }

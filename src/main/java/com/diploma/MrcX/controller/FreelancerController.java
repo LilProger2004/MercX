@@ -9,6 +9,7 @@ import com.diploma.MrcX.service.ClientService;
 import com.diploma.MrcX.service.FreelancerService;
 import com.diploma.MrcX.service.KeycloakAdminService;
 import com.diploma.MrcX.service.OrderService;
+import com.diploma.MrcX.utils.FormatParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,9 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.ParameterizedType;
 import java.time.LocalDate;
@@ -70,6 +69,20 @@ public class FreelancerController {
         model.addAttribute("deadline" , deadline);
         model.addAttribute("order",order);
         return "my-project-for-freelancer";
+    }
+
+    @GetMapping("new-description")
+    public String getNew(){
+        return "save-description";
+    }
+
+    @PostMapping("new-description")
+    public String getNew(@RequestBody String body,Authentication authentication) throws JsonProcessingException {
+        Freelancers freelancers = freelancerService.findById(jwtUtils.getUserIdFromJWT(authentication));
+        freelancers.setAboutMe(new ObjectMapper().readValue(FormatParser.urlEncodedToJson(body), Freelancers.class).getAboutMe());
+        freelancerService.save(freelancers);
+
+        return "redirect:/me";
     }
 
     @GetMapping("{id}")

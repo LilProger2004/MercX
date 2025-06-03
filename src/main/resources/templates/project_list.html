@@ -15,7 +15,7 @@
 <header>
     <div class="container">
         <nav class="navbar">
-            <a href="index.html" class="logo">Фриланс<span>Биржа</span></a>
+            <a href="index.html" class="logo">Биржа<span>Фрилансеров</span></a>
             <ul class="nav-links">
                 <li><a href="/freelancer/all">Фрилансеры</a></li>
                 <li><a href="/project/all">Проекты</a></li>
@@ -113,8 +113,7 @@
                 </div>
                 <div class="project-footer">
                     <div class="project-meta">
-                        <span class="meta-item"><i class="far fa-clock"></i> Опубликован 2 дня назад</span>
-                        <span class="meta-item"><i class="far fa-comments"></i> 12 предложений</span>
+                        <span class="meta-item"><i class="far fa-clock" th:text="${order.createdAt}"></i> </span>
                         <span class="project-status status-open">Открыт</span>
                     </div>
                     <div class="project-skills">
