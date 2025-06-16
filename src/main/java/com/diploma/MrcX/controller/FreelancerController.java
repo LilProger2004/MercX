@@ -66,6 +66,7 @@ public class FreelancerController {
         LocalDate deadline = order.getCreatedAt().plusDays(order.getDeadline());
         model.addAttribute("hasSolution",order.getFiles().isEmpty());
         model.addAttribute("hasSolutionComment",order.getSolutionComment() == null);
+        model.addAttribute("hasSolution2", !order.getSolutionComment().isEmpty() && !order.getFiles().isEmpty());
         model.addAttribute("deadline" , deadline);
         model.addAttribute("order",order);
         return "my-project-for-freelancer";

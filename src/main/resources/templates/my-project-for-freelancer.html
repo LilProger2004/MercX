@@ -97,6 +97,25 @@
             margin-bottom: 30px;
         }
 
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 12px 20px;
+            border-radius: 5px;
+            border: 1px solid #c3e6cb;
+            margin: 20px 0;
+            display: inline-flex;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success-message::before {
+            content: "✓";
+            margin-right: 10px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
         .apply-btn {
             margin-top: 20px;
         }
@@ -171,7 +190,11 @@
         </div>
     </div>
 
-    <div class="solution-section">
+    <div class="success-message">
+        Решение успешно отправлено
+    </div>
+
+   <!-- <div class="solution-section" th:unless="${hasSolution2}">
         <h2>Отправить решение</h2>
         <form class="solution-form" th:action="'/project/submit-solution/' + ${order.id}" method="post"
               enctype="multipart/form-data">
@@ -191,7 +214,7 @@
 
             <button type="submit" class="submit-solution">Отправить решение</button>
         </form>
-    </div>
+    </div>-->
 </main>
 
 <!-- Подвал -->
